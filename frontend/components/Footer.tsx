@@ -2,7 +2,7 @@ export default function Footer() {
     return (
         <footer className="bg-slate-800 text-white mt-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-7 gap-6">
                     {/* Brand */}
                     <div>
                         <div className="flex items-center space-x-2 mb-4">
@@ -51,13 +51,31 @@ export default function Footer() {
 
                     {/* Utility Tools */}
                     <div>
-                        <h3 className="font-semibold mb-4 text-purple-400">Utility Tools</h3>
+                        <h3 className="font-semibold mb-4 text-purple-400">Utility</h3>
                         <ul className="space-y-2 text-sm text-gray-400">
-                            <li><a href="/qr-generator" className="hover:text-white transition-colors">QR Generator</a></li>
-                            <li><a href="/password-generator" className="hover:text-white transition-colors">Password Gen</a></li>
-                            <li><a href="/text-case-converter" className="hover:text-white transition-colors">Case Converter</a></li>
-                            <li><a href="/word-counter" className="hover:text-white transition-colors">Word Counter</a></li>
-                            <li><a href="/uuid-generator" className="hover:text-white transition-colors">UUID Gen</a></li>
+                            <li><a href="/qr-generator" className="hover:text-white transition-colors">QR Code</a></li>
+                            <li><a href="/password-generator" className="hover:text-white transition-colors">Password</a></li>
+                            <li><a href="/text-case-converter" className="hover:text-white transition-colors">Text Case</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Developer Tools */}
+                    <div>
+                        <h3 className="font-semibold mb-4 text-orange-400">Developer</h3>
+                        <ul className="space-y-2 text-sm text-gray-400">
+                            <li><a href="/base64-converter" className="hover:text-white transition-colors">Base64</a></li>
+                            <li><a href="/json-formatter" className="hover:text-white transition-colors">JSON</a></li>
+                            <li><a href="/hash-generator" className="hover:text-white transition-colors">Hash</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Design Tools */}
+                    <div>
+                        <h3 className="font-semibold mb-4 text-pink-400">Design</h3>
+                        <ul className="space-y-2 text-sm text-gray-400">
+                            <li><a href="/color-tools" className="hover:text-white transition-colors">Colors</a></li>
+                            <li><a href="/unit-converter" className="hover:text-white transition-colors">Units</a></li>
+                            <li><a href="/markdown-editor" className="hover:text-white transition-colors">Markdown</a></li>
                         </ul>
                     </div>
                 </div>
