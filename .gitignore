@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# FastAPI / Backend
+storage/
+*.db
+*.sqlite3
+
+# Node / Frontend
+node_modules/
+.next/
+out/
+build/
+.pnp/
+.yarn/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.pem
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*.cache
+
+# Testing
+coverage/
+.pytest_cache/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

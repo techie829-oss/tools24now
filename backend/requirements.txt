@@ -1,0 +1,25 @@
+fastapi
+uvicorn
+jinja2
+sqlalchemy
+alembic
+pydantic
+pydantic-settings
+python-multipart
+pymupdf
+aiofiles
+python-dotenv
+requests
+reportlab
+psycopg2-binary
+passlib[bcrypt]
+python-jose[cryptography]
+slowapi==0.1.9
+pytesseract==0.3.10
+pdf2docx==0.5.8
+
+# Image processing
+
+pillow
+opencv-python
+scikit-image
