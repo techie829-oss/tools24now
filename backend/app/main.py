@@ -76,6 +76,10 @@ from app.routers import image_cropper  # Image Cropper router
 from app.routers import image_filters  # Image Filters router
 from app.routers import image_rotate  # Image Rotate & Flip router
 from app.routers import image_watermark  # Image Watermark router
+from app.controllers.api import table_extractor # Added for Table Extractor
+from app.controllers.api import receipt_scanner # Added for Receipt Scanner
+from app.controllers.api import network_tools # Added for Network Tools
+from app.controllers.api import security_tools # Added for Security Tools
 from app.db.session import Base, engine
 
 Base.metadata.create_all(bind=engine)
@@ -88,6 +92,7 @@ app.include_router(api_merge.router, prefix=settings.API_V1_STR, tags=["api_merg
 app.include_router(api_compress.router, prefix=settings.API_V1_STR, tags=["api_compress"])
 app.include_router(api_ocr.router, prefix=settings.API_V1_STR, tags=["api_ocr"])
 app.include_router(api_deskew.router, prefix=settings.API_V1_STR, tags=["api_deskew"])
+app.include_router(table_extractor.router, prefix=settings.API_V1_STR, tags=["api_table_extractor"])
 app.include_router(split_pdf.router, prefix=settings.API_V1_STR, tags=["split_pdf"])
 app.include_router(pdf_to_word.router, prefix=settings.API_V1_STR, tags=["pdf_to_word"])
 app.include_router(image_converter.router, prefix=settings.API_V1_STR, tags=["image_converter"])
@@ -97,7 +102,9 @@ app.include_router(image_cropper.router, prefix=settings.API_V1_STR, tags=["imag
 app.include_router(image_filters.router, prefix=settings.API_V1_STR, tags=["image_filters"])
 app.include_router(image_rotate.router, prefix=settings.API_V1_STR, tags=["image_rotate"])
 app.include_router(image_watermark.router, prefix=settings.API_V1_STR, tags=["image_watermark"])
-app.include_router(cleanup_admin.router, prefix=f"{settings.API_V1_STR}/admin", tags=["cleanup"])
+app.include_router(receipt_scanner.router, prefix="/api", tags=["Receipt Scanner"])
+app.include_router(network_tools.router, prefix="/api", tags=["Network Tools"])
+app.include_router(security_tools.router, prefix="/api", tags=["Security Tools"])
 
 # Web Controllers (HTML)
 # Currently only Landing Page (root) and Admin (via api_admin) are served.

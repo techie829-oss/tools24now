@@ -77,7 +77,9 @@ export default function GSTCalculator() {
                         <Calculator className="w-8 h-8 text-indigo-600" />
                     </div>
                     <h1 className="text-3xl font-bold text-gray-900">GST Calculator</h1>
-                    <p className="mt-2 text-gray-600">Calculate inclusive & exclusive GST accurately</p>
+                    <p className="mt-2 text-gray-600">
+                        Calculate inclusive & exclusive GST accurately. Need full reports? <span className="font-bold text-indigo-600 cursor-pointer">Try CoolBook</span>
+                    </p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -94,8 +96,8 @@ export default function GSTCalculator() {
                             <button
                                 onClick={() => setTaxMode('exclusive')}
                                 className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${taxMode === 'exclusive'
-                                        ? 'bg-white text-indigo-600 shadow-sm'
-                                        : 'text-gray-500 hover:text-gray-700'
+                                    ? 'bg-white text-indigo-600 shadow-sm'
+                                    : 'text-gray-500 hover:text-gray-700'
                                     }`}
                             >
                                 GST Exclusive (Add Tax)
@@ -103,8 +105,8 @@ export default function GSTCalculator() {
                             <button
                                 onClick={() => setTaxMode('inclusive')}
                                 className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${taxMode === 'inclusive'
-                                        ? 'bg-white text-indigo-600 shadow-sm'
-                                        : 'text-gray-500 hover:text-gray-700'
+                                    ? 'bg-white text-indigo-600 shadow-sm'
+                                    : 'text-gray-500 hover:text-gray-700'
                                     }`}
                             >
                                 GST Inclusive (Remove Tax)
@@ -135,8 +137,8 @@ export default function GSTCalculator() {
                                         key={r}
                                         onClick={() => setRate(r)}
                                         className={`py-2 px-3 rounded-lg text-sm font-medium transition-all ${rate === r
-                                                ? 'bg-indigo-600 text-white shadow-md'
-                                                : 'bg-gray-50 text-gray-600 hover:bg-gray-100 border border-gray-200'
+                                            ? 'bg-indigo-600 text-white shadow-md'
+                                            : 'bg-gray-50 text-gray-600 hover:bg-gray-100 border border-gray-200'
                                             }`}
                                     >
                                         {r}%

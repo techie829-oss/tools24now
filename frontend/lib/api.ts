@@ -2,7 +2,7 @@
 
 import type { Job, JobResults, CreateJobResponse, MergeJobResponse, FileItem } from './types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
 
 class APIClient {
     private baseURL: string;
@@ -396,6 +396,77 @@ class APIClient {
      */
     getDeskewedPdfDownloadURL(jobId: string): string {
         return `${this.baseURL}/deskew-pdf/jobs/${jobId}/download`;
+    }
+
+    // ========== Scan Receipt Methods ==========
+
+    /**
+     * Scan a receipt for data extraction
+     */
+    async scanReceipt(file: File): Promise<any> {
+        const formData = new FormData();
+        formData.append('file', file);
+        const response = await fetch(`${this.baseURL}/scan-receipt`, {
+            method: 'POST',
+            body: formData,
+        });
+        if (!response.ok) {
+            const error = await response.json().catch(() => ({ detail: 'Scan failed' }));
+            throw new Error(error.detail || 'Scan failed');
+        }
+        return response.json();
+    }
+
+    // ========== DNS Lookup Methods ==========
+
+    /**
+     * Perform a DNS lookup for a given domain and record type
+     */
+    async dnsLookup(domain: string, recordType: string): Promise<any> {
+        const response = await fetch(`${this.baseURL}/dns-lookup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ domain, record_type: recordType }),
+        });
+        if (!response.ok) {
+            const error = await response.json().catch(() => ({ detail: 'Lookup failed' }));
+            throw new Error(error.detail || 'Lookup failed');
+        }
+        return response.json();
+    }
+
+    // ========== SSL Checker Methods ==========
+
+    /**
+     * Check SSL certificate for a domain
+     */
+    async sslCheck(domain: string, port: number = 443): Promise<any> {
+        const response = await fetch(`${this.baseURL}/ssl-check`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ domain, port }),
+        });
+        if (!response.ok) {
+            const error = await response.json().catch(() => ({ detail: 'SSL Check failed' }));
+            throw new Error(error.detail || 'SSL Check failed');
+        }
+        return response.json();
+    }
+
+    /**
+     * Check HTTP Headers for a URL
+     */
+    async checkHeaders(url: string, user_agent?: string): Promise<any> {
+        const response = await fetch(`${this.baseURL}/http-headers`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url, user_agent }),
+        });
+        if (!response.ok) {
+            const error = await response.json().catch(() => ({ detail: 'Header Check failed' }));
+            throw new Error(error.detail || 'Header Check failed');
+        }
+        return response.json();
     }
 
     // ========== Split PDF Methods ==========
@@ -1083,3 +1154,4 @@ class APIClient {
 
 // Export singleton instance
 export const api = new APIClient();
+export const ApiService = api;

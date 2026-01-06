@@ -61,3 +61,7 @@ coverage/
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+*.db-shm
+*.db-wal
+__pycache__/
+*.pyc

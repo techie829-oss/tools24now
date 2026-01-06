@@ -1,169 +1,180 @@
+'use client';
+
 import Link from 'next/link';
-import { Images, Link2, Minimize2, FolderSync, ScanEye, Ruler, Scissors, FileType, RefreshCw, Maximize2, Crop, Wand2, RotateCw, Stamp } from 'lucide-react';
+import {
+  Images, Link2, Minimize2, FolderSync, ScanEye, Ruler, Scissors, FileType,
+  RefreshCw, Maximize2, Crop, Wand2, RotateCw, Stamp,
+  FileText, Calculator, PieChart, TrendingUp, FileUser, UtensilsCrossed, Barcode, Table as TableIcon,
+  QrCode, Lock, Type, Fingerprint, Binary, Code, Hash, FileCode, Palette, ArrowRightLeft,
+  Clock, Timer, Cake, Network, Search, Server, Receipt, SearchCode, Shield, CheckCircle, Zap, Lock as LockIcon,
+  Calendar, Award, Users, Home as HomeIcon, BookOpen, GraduationCap
+} from 'lucide-react';
 
-// Icon mapping for PDF tools
-const pdfToolIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  'PDF to Images': Images,
-  'Merge PDF': Link2,
-  'Compress PDF': Minimize2,
-  'Organize PDF': FolderSync,
-  'OCR PDF': ScanEye,
-  'Deskew PDF': Ruler,
-  'Split PDF': Scissors,
-  'PDF to Word': FileType,
-};
+// --- Tool Data ---
 
-// Icon mapping for Image tools
-const imageToolIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  'Image Converter': RefreshCw,
-  'Image Compressor': Minimize2,
-  'Image Resizer': Maximize2,
-  'Image Cropper': Crop,
-  'Image Filters': Wand2,
-  'Image Rotate & Flip': RotateCw,
-  'Image Watermark': Stamp,
-};
+const pdfTools = [
+  { title: 'PDF to Images', description: 'Extract pages as high-quality PNG images', href: '/pdf-to-images', icon: Images, available: true },
+  { title: 'Image to PDF', description: 'Combine images into a single PDF file', href: '/image-to-pdf', icon: Images, available: true },
+  { title: 'Merge PDF', description: 'Combine multiple PDFs into one document', href: '/merge-pdf', icon: Link2, available: true },
+  { title: 'Compress PDF', description: 'Reduce file size while optimizing quality', href: '/compress-pdf', icon: Minimize2, available: true },
+  { title: 'Organize PDF', description: 'Sort, add and delete PDF pages', href: '/organize-pdf', icon: FolderSync, available: true },
+  { title: 'OCR PDF', description: 'Convert scanned documents to searchable text', href: '/ocr-pdf', icon: ScanEye, available: true },
+  { title: 'Deskew PDF', description: 'Automatically straighten skewed documents', href: '/deskew-pdf', icon: Ruler, available: true },
+  { title: 'Split PDF', description: 'Extract selected pages from your PDF', href: '/split-pdf', icon: Scissors, available: true },
+  { title: 'PDF to Word', description: 'Convert PDF to editable Word documents', href: '/pdf-to-word', icon: FileType, available: true },
+  { title: 'Table Extractor', description: 'Extract tables from PDF to CSV/Excel', href: '/table-extractor', icon: TableIcon, available: true },
+];
+
+const imageTools = [
+  { title: 'Image Converter', description: 'Convert between JPG, PNG, WebP formats', href: '/image-converter', icon: RefreshCw, available: true },
+  { title: 'Image Compressor', description: 'Reduce file size with quality control', href: '/image-compressor', icon: Minimize2, available: true },
+  { title: 'Image Resizer', description: 'Resize by dimensions, percentage, or presets', href: '/image-resizer', icon: Maximize2, available: true },
+  { title: 'Image Cropper', description: 'Crop with aspect ratios or coordinates', href: '/image-cropper', icon: Crop, available: true },
+  { title: 'Image Filters', description: 'Apply filters with live preview', href: '/image-filters', icon: Wand2, available: true },
+  { title: 'Image Rotate & Flip', description: 'Rotate and flip images with one click', href: '/image-rotate', icon: RotateCw, available: true },
+  { title: 'Image Watermark', description: 'Add text or logo watermarks to protect images', href: '/image-watermark', icon: Stamp, available: true },
+];
+
+const businessTools = [
+  { title: 'Invoice Generator', description: 'Create professional invoices with GST', href: '/invoice-generator', icon: FileText, available: true },
+  { title: 'GST Calculator', description: 'Calculate inclusive & exclusive GST instantly', href: '/gst-calculator', icon: Calculator, available: true },
+  { title: 'EMI Calculator', description: 'Calculate loan EMIs with amortization', href: '/emi-calculator', icon: PieChart, available: true },
+  { title: 'Profit Margin', description: 'Calculate margins, markups & optimal pricing', href: '/profit-margin', icon: TrendingUp, available: true },
+  { title: 'Quick Resume Builder', description: 'Create a clean resume PDF in minutes', href: '/resume-builder', icon: FileUser, available: true },
+  { title: 'QR Menu Generator', description: 'Create digital menus for restaurants', href: '/qr-menu-generator', icon: UtensilsCrossed, available: true },
+  { title: 'Barcode Generator', description: 'Generate custom barcodes for products', href: '/barcode-generator', icon: Barcode, available: true },
+  { title: 'Receipt Scanner', description: 'Scan and extract data from receipts', href: '/receipt-scanner', icon: Receipt, available: true },
+];
+
+const utilityTools = [
+  { title: 'QR Code Generator', description: 'Create QR codes for URLs, text, wifi', href: '/qr-generator', icon: QrCode, available: true },
+  { title: 'File Metadata', description: 'View and edit PDF/Image metadata', href: '/file-metadata', icon: FileText, available: true },
+  { title: 'Password Generator', description: 'Generate strong, secure passwords', href: '/password-generator', icon: Lock, available: true },
+  { title: 'Text Case Converter', description: 'Convert text to UPPER, lower, Title Case', href: '/text-case-converter', icon: Type, available: true },
+  { title: 'Word Counter', description: 'Count words, characters, text statistics', href: '/word-counter', icon: FileText, available: true },
+  { title: 'UUID Generator', description: 'Generate random UUIDs (v1, v4)', href: '/uuid-generator', icon: Fingerprint, available: true },
+];
+
+const developerTools = [
+  { title: 'Base64 Converter', description: 'Encode/Decode Base64 strings', href: '/base64-converter', icon: Binary, available: true },
+  { title: 'JSON <-> XML', description: 'Convert between JSON and XML formats', href: '/json-xml-converter', icon: ArrowRightLeft, available: true },
+  { title: 'JSON Formatter', description: 'Validate and format JSON data', href: '/json-formatter', icon: Code, available: true },
+  { title: 'Hash Generator', description: 'Generate MD5, SHA-1, SHA-256 hashes', href: '/hash-generator', icon: Hash, available: true },
+  { title: 'Markdown Editor', description: 'Write and preview Markdown live', href: '/markdown-editor', icon: FileCode, available: true },
+  { title: 'SSL Checker', description: 'Verify SSL certificate validity', href: '/ssl-checker', icon: Shield, available: true },
+  { title: 'Header Inspector', description: 'Analyze HTTP headers', href: '/header-inspector', icon: Server, available: true },
+  { title: 'Regex Tester', description: 'Test and debug regular expressions', href: '/regex-tester', icon: SearchCode, available: true },
+];
+
+const designTools = [
+  { title: 'Color Tools', description: 'Pick, convert and generate color palettes', href: '/color-tools', icon: Palette, available: true },
+  { title: 'Unit Converter', description: 'Convert common units of measurement', href: '/unit-converter', icon: ArrowRightLeft, available: true },
+];
+
+const networkTools = [
+  { title: 'My IP Address', description: 'Check your public IP address info', href: '/my-ip', icon: Network, available: true },
+  { title: 'DNS Lookup', description: 'Perform DNS record lookups', href: '/dns-lookup', icon: Search, available: true },
+  { title: 'Subnet Calculator', description: 'Calculate IP subnets and ranges', href: '/subnet-calculator', icon: Calculator, available: true },
+];
+
+const educationTools = [
+  { title: 'Timetable Generator', description: 'Design weekly class schedules', href: '/timetable-generator', icon: Calendar, available: true },
+  { title: 'Student ID Generator', description: 'Create bulk student ID cards', href: '/student-id-generator', icon: FileUser, available: true },
+  { title: 'Fee Receipt Generator', description: 'Generate school fee receipts', href: '/fee-receipt-generator', icon: Receipt, available: true },
+  { title: 'Exam Marks Calculator', description: 'Calculate percentages and totals', href: '/exam-marks-calculator', icon: Calculator, available: true },
+  { title: 'Grade Converter', description: 'Convert marks to grades (GPA)', href: '/grade-converter', icon: Award, available: true },
+  { title: 'Attendance Calculator', description: 'Track student attendance %', href: '/attendance-calculator', icon: Users, available: true },
+  { title: 'Hostel Allocation', description: 'Manage room allocations', href: '/hostel-allocation', icon: HomeIcon, available: true },
+  { title: 'Library Fine', description: 'Calculate overdue book fines', href: '/library-fine-calculator', icon: BookOpen, available: true },
+];
+
+const dateTools = [
+  { title: 'Timestamp Converter', description: 'Unix <-> Human Date conversion', href: '/timestamp-converter', icon: Clock, available: true },
+  { title: 'Time Difference', description: 'Calculate duration between dates', href: '/time-difference', icon: Timer, available: true },
+  { title: 'Age Calculator', description: 'Calculate exact age & birthdays', href: '/age-calculator', icon: Cake, available: true },
+];
+
+// --- Components ---
+
+const ToolSection = ({ title, tools, bgClass }: { title: string, tools: typeof pdfTools, bgClass?: string }) => (
+  <div className={`py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ${bgClass || ''}`}>
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-gray-900 mb-3">{title}</h2>
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {tools.map((tool) => {
+        const Icon = tool.icon;
+        return (
+          <Link
+            key={tool.title}
+            href={tool.available ? tool.href : '#'}
+            className={`group relative bg-white border border-gray-200 rounded-2xl p-6 transition-all duration-300 ${tool.available
+              ? 'hover:border-blue-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer'
+              : 'opacity-60 cursor-not-allowed'
+              }`}
+          >
+            {!tool.available && (
+              <span className="absolute top-3 right-3 bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full">Soon</span>
+            )}
+            <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 group-hover:scale-110 transition-transform duration-300 ${title.includes('PDF') ? 'bg-indigo-50 text-indigo-600' :
+              title.includes('Image') ? 'bg-emerald-50 text-emerald-600' :
+                title.includes('Business') ? 'bg-blue-50 text-blue-600' :
+                  title.includes('Utility') ? 'bg-purple-50 text-purple-600' :
+                    title.includes('Developer') ? 'bg-orange-50 text-orange-600' :
+                      title.includes('Network') ? 'bg-slate-50 text-slate-600' :
+                        'bg-pink-50 text-pink-600'
+              }`}>
+              <Icon className="w-7 h-7" />
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+              {tool.title}
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {tool.description}
+            </p>
+          </Link>
+        );
+      })}
+    </div>
+  </div>
+);
 
 export default function Home() {
-  const pdfTools = [
-    {
-      title: 'PDF to Images',
-      description: 'Extract pages as high-quality PNG images',
-      href: '/pdf-to-images',
-      available: true,
-    },
-    {
-      title: 'Merge PDF',
-      description: 'Combine multiple PDFs into one document',
-      href: '/merge-pdf',
-      available: true,
-    },
-    {
-      title: 'Compress PDF',
-      description: 'Reduce file size while optimizing quality',
-      href: '/compress-pdf',
-      available: true,
-    },
-    {
-      title: 'Organize PDF',
-      description: 'Sort, add and delete PDF pages',
-      href: '/organize-pdf',
-      available: true,
-    },
-    {
-      title: 'OCR PDF',
-      description: 'Convert scanned documents to searchable text',
-      href: '/ocr-pdf',
-      available: true,
-    },
-    {
-      title: 'Deskew PDF',
-      description: 'Automatically straighten skewed documents',
-      href: '/deskew-pdf',
-      available: true,
-    },
-    {
-      title: 'Split PDF',
-      description: 'Extract selected pages from your PDF',
-      href: '/split-pdf',
-      available: true,
-    },
-    {
-      title: 'PDF to Word',
-      description: 'Convert PDF to editable Word documents',
-      href: '/pdf-to-word',
-      available: true,
-    },
-  ];
-
-  const imageTools = [
-    {
-      title: 'Image Converter',
-      description: 'Convert between JPG, PNG, WebP formats',
-      href: '/image-converter',
-      available: true,
-    },
-    {
-      title: 'Image Compressor',
-      description: 'Reduce file size with quality control',
-      href: '/image-compressor',
-      available: true,
-    },
-    {
-      title: 'Image Resizer',
-      description: 'Resize by dimensions, percentage, or presets',
-      href: '/image-resizer',
-      available: true,
-    },
-    {
-      title: 'Image Cropper',
-      description: 'Crop with aspect ratios or coordinates',
-      href: '/image-cropper',
-      available: true,
-    },
-    {
-      title: 'Image Filters',
-      description: 'Apply filters with live before/after preview',
-      href: '/image-filters',
-      available: true,
-    },
-    {
-      title: 'Image Rotate & Flip',
-      description: 'Rotate and flip images with one click',
-      href: '/image-rotate',
-      available: true,
-    },
-    {
-      title: 'Image Watermark',
-      description: 'Add text or logo watermarks to protect images',
-      href: '/image-watermark',
-      available: true,
-    },
-  ];
-
   return (
     <div className="bg-white">
-      {/* Hero Section with Gradient Background */}
+      {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
           <div className="text-center">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
-              <span className="block text-gray-900">Free PDF & Image Tools</span>
+              <span className="block text-gray-900">All-in-One</span>
               <span className="block bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text mt-2">
-                Online, Fast & Secure
+                Online Tools
               </span>
             </h1>
             <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-              Professional document and image processing tools. No software to install, no registration required.
-              All processing happens securely in your browser.
+              PDF, Image, Business & Developer tools — fast, secure, free.
             </p>
             <div className="mt-10 flex justify-center gap-4">
               <Link
                 href="#pdf-tools"
                 className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all"
               >
-                Browse Tools
+                Explore Tools
               </Link>
             </div>
-
             {/* Quick Stats */}
             <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">
-                  100%
-                </div>
+                <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">100%</div>
                 <div className="text-sm text-gray-600 mt-2 font-medium">Free to Use</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">
-                  🔒
-                </div>
+                <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">🔒</div>
                 <div className="text-sm text-gray-600 mt-2 font-medium">Privacy First</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">
-                  ⚡
-                </div>
+                <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">⚡</div>
                 <div className="text-sm text-gray-600 mt-2 font-medium">Lightning Fast</div>
               </div>
             </div>
@@ -171,291 +182,99 @@ export default function Home() {
         </div>
       </div>
 
-      {/* PDF Tools Section */}
-      <div id="pdf-tools" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">
-            📄 PDF Tools
+      {/* Most Used Tools */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <span className="mr-2">🔥</span> Most Used Tools
           </h2>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            Comprehensive PDF processing tools. No installation required.
-          </p>
-        </div>
-
-        {/* PDF Tools Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {pdfTools.map((tool) => {
-            const IconComponent = pdfToolIcons[tool.title];
-            return (
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+            {[
+              { title: 'Merge PDF', icon: Link2, href: '/merge-pdf', color: 'bg-indigo-50 text-indigo-600' },
+              { title: 'Compress PDF', icon: Minimize2, href: '/compress-pdf', color: 'bg-indigo-50 text-indigo-600' },
+              { title: 'Image Compressor', icon: Minimize2, href: '/image-compressor', color: 'bg-emerald-50 text-emerald-600' },
+              { title: 'Invoice Generator', icon: FileText, href: '/invoice-generator', color: 'bg-blue-50 text-blue-600' },
+              { title: 'GST Calculator', icon: Calculator, href: '/gst-calculator', color: 'bg-blue-50 text-blue-600' },
+              { title: 'QR Generator', icon: QrCode, href: '/qr-generator', color: 'bg-purple-50 text-purple-600' },
+            ].map((tool) => (
               <Link
                 key={tool.title}
-                href={tool.available ? tool.href : '#'}
-                className={`group relative bg-white border border-gray-200 rounded-xl p-5 transition-all duration-300 ${tool.available
-                  ? 'hover:border-indigo-500 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer'
-                  : 'opacity-60 cursor-not-allowed'
-                  }`}
+                href={tool.href}
+                className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-indigo-300 hover:bg-white hover:shadow-md transition-all group text-center"
               >
-                {!tool.available && (
-                  <span className="absolute top-3 right-3 bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full">
-                    Soon
-                  </span>
-                )}
-
-                {/* Icon */}
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300">
-                  {IconComponent && <IconComponent className="w-6 h-6 text-indigo-600" />}
+                <div className={`p-3 rounded-lg mb-2 ${tool.color} group-hover:scale-110 transition-transform`}>
+                  <tool.icon className="w-6 h-6" />
                 </div>
-
-                {/* Tool Info */}
-                <h3 className="text-base font-bold text-gray-900 mb-1.5 group-hover:text-indigo-600 transition-colors">
-                  {tool.title}
-                </h3>
-                <p className="text-gray-600 text-sm leading-snug">
-                  {tool.description}
-                </p>
-
-                {/* Arrow Icon */}
-                {tool.available && (
-                  <div className="mt-3 flex items-center text-indigo-600 font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Try now</span>
-                    <svg className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                )}
+                <span className="text-sm font-bold text-gray-800">{tool.title}</span>
               </Link>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Image Tools Section */}
-      <div className="bg-gradient-to-br from-green-50 to-emerald-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              🖼️ Image Tools
-            </h2>
-            <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              Professional image processing and conversion tools.
-            </p>
-          </div>
-
-          {/* Image Tools Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {imageTools.map((tool) => {
-              const IconComponent = imageToolIcons[tool.title];
-              return (
-                <Link
-                  key={tool.title}
-                  href={tool.available ? tool.href : '#'}
-                  className={`group relative bg-white border border-gray-200 rounded-xl p-5 transition-all duration-300 ${tool.available
-                    ? 'hover:border-emerald-500 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer'
-                    : 'opacity-60 cursor-not-allowed'
-                    }`}
-                >
-                  {!tool.available && (
-                    <span className="absolute top-3 right-3 bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full">
-                      Soon
-                    </span>
-                  )}
-
-                  {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-emerald-100 to-green-100 rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300">
-                    {IconComponent && <IconComponent className="w-6 h-6 text-emerald-600" />}
-                  </div>
-
-                  {/* Tool Info */}
-                  <h3 className="text-base font-bold text-gray-900 mb-1.5 group-hover:text-emerald-600 transition-colors">
-                    {tool.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-snug">
-                    {tool.description}
-                  </p>
-
-                  {/* Arrow Icon */}
-                  {tool.available && (
-                    <div className="mt-3 flex items-center text-emerald-600 font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span>Try now</span>
-                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  )}
-                </Link>
-              );
-            })}
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Business Tools Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">
-            💼 Business Tools
-          </h2>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            Professional tools for business operations and finance.
-          </p>
-        </div>
-
-        {/* Business Tools Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Link
-            href="/invoice-generator"
-            className="group relative bg-white border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-blue-500 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
-          >
-            {/* Icon */}
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-
-            {/* Tool Info */}
-            <h3 className="text-base font-bold text-gray-900 mb-1.5 group-hover:text-blue-600 transition-colors">
-              Invoice Generator
-            </h3>
-            <p className="text-gray-600 text-sm leading-snug">
-              Create professional invoices with GST, QR codes, and more.
-            </p>
-
-            {/* Arrow Icon */}
-            <div className="mt-3 flex items-center text-blue-600 font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Try now</span>
-              <svg className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </Link>
-
-          <Link
-            href="/gst-calculator"
-            className="group relative bg-white border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-blue-500 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
-          >
-            {/* Icon */}
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </div>
-
-            {/* Tool Info */}
-            <h3 className="text-base font-bold text-gray-900 mb-1.5 group-hover:text-blue-600 transition-colors">
-              GST Calculator
-            </h3>
-            <p className="text-gray-600 text-sm leading-snug">
-              Calculate inclusive & exclusive GST instantly.
-            </p>
-
-            {/* Arrow Icon */}
-            <div className="mt-3 flex items-center text-blue-600 font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Try now</span>
-              <svg className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </Link>
-
-          <Link
-            href="/emi-calculator"
-            className="group relative bg-white border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-blue-500 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
-          >
-            {/* Icon */}
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-              </svg>
-            </div>
-
-            {/* Tool Info */}
-            <h3 className="text-base font-bold text-gray-900 mb-1.5 group-hover:text-blue-600 transition-colors">
-              EMI Calculator
-            </h3>
-            <p className="text-gray-600 text-sm leading-snug">
-              Calculate loan EMIs with amortization.
-            </p>
-
-            {/* Arrow Icon */}
-            <div className="mt-3 flex items-center text-blue-600 font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Try now</span>
-              <svg className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </Link>
-
-          <Link
-            href="/profit-margin"
-            className="group relative bg-white border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-blue-500 hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
-          >
-            {/* Icon */}
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-            </div>
-
-            {/* Tool Info */}
-            <h3 className="text-base font-bold text-gray-900 mb-1.5 group-hover:text-blue-600 transition-colors">
-              Profit Margin
-            </h3>
-            <p className="text-gray-600 text-sm leading-snug">
-              Calculate margins, markups & optimal pricing.
-            </p>
-
-            {/* Arrow Icon */}
-            <div className="mt-3 flex items-center text-blue-600 font-semibold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Try now</span>
-              <svg className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </Link>
-        </div>
+      <div id="pdf-tools">
+        <ToolSection title="📄 PDF Tools" tools={pdfTools} />
       </div>
 
-      {/* Why Choose Us Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-indigo-50 py-20">
+      <div className="bg-gradient-to-br from-green-50 to-emerald-50">
+        <ToolSection title="🖼️ Image Tools" tools={imageTools} />
+      </div>
+
+      <ToolSection title="💼 Business Tools" tools={businessTools} />
+
+      <div className="bg-gradient-to-br from-purple-50 to-indigo-50">
+        <ToolSection title="🛠️ Utility Tools" tools={utilityTools} />
+      </div>
+
+      <ToolSection title="👨‍💻 Developer Tools" tools={developerTools} />
+
+      <div className="bg-gradient-to-br from-pink-50 to-red-50">
+        <ToolSection title="🎨 Design Tools" tools={designTools} />
+      </div>
+
+      <div className="bg-gradient-to-br from-cyan-50 to-blue-50">
+        <ToolSection title="🌐 Network Tools" tools={networkTools} />
+      </div>
+
+      <div className="bg-gradient-to-br from-teal-50 to-green-50">
+        <ToolSection title="🎓 Education Tools" tools={educationTools} />
+      </div>
+
+      <div className="bg-gradient-to-br from-orange-50 to-amber-50">
+        <ToolSection title="⏰ Date & Time Tools" tools={dateTools} />
+      </div>
+
+      {/* Why Choose Us */}
+      <div className="bg-gray-900 text-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
-            Why Choose Tools24Now?
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6">Why Professionals Choose Tools24Now</h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">No subscriptions, no hidden fees, just powerful tools at your fingertips.</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
+            <div className="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-indigo-500 transition-colors">
+              <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                <LockIcon className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">100% Secure & Private</h3>
-              <p className="text-gray-600">
-                Your files are processed securely. We don't store or share your data. All processing happens in your browser.
-              </p>
+              <h3 className="text-xl font-bold mb-3">Secure Processing</h3>
+              <p className="text-gray-400">Your files never leave your browser for most operations. Server-side tasks are deleted immediately after processing.</p>
             </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+
+            <div className="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-indigo-500 transition-colors">
+              <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                <Zap className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
-              <p className="text-gray-600">
-                Optimized processing engines deliver results in seconds. No waiting, no queues, just instant results.
-              </p>
+              <h3 className="text-xl font-bold mb-3">Instant Results</h3>
+              <p className="text-gray-400">Powered by advanced algorithms and WebAssembly to deliver desktop-class performance in your browser.</p>
             </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+
+            <div className="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-indigo-500 transition-colors">
+              <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                <CheckCircle className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Completely Free</h3>
-              <p className="text-gray-600">
-                All tools are 100% free with no hidden costs. No registration required, no premium plans, just free tools.
-              </p>
+              <h3 className="text-xl font-bold mb-3">No Limits</h3>
+              <p className="text-gray-400">Process as many files as you need. No daily limits, no file size restrictions on client-side tools.</p>
             </div>
           </div>
         </div>

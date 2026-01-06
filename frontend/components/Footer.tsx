@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { Facebook, Twitter, Instagram, Github, Mail } from 'lucide-react';
 export default function Footer() {
     return (
         <footer className="bg-slate-800 text-white mt-auto">
@@ -24,6 +26,7 @@ export default function Footer() {
                             <li><a href="/merge-pdf" className="hover:text-white transition-colors">Merge PDF</a></li>
                             <li><a href="/compress-pdf" className="hover:text-white transition-colors">Compress PDF</a></li>
                             <li><a href="/ocr-pdf" className="hover:text-white transition-colors">OCR PDF</a></li>
+                            <li><a href="/table-extractor" className="hover:text-white transition-colors">Table Extractor</a></li>
                         </ul>
                     </div>
 
@@ -42,10 +45,11 @@ export default function Footer() {
                     <div>
                         <h3 className="font-semibold mb-4 text-blue-400">Business</h3>
                         <ul className="space-y-2 text-sm text-gray-400">
-                            <li><a href="/invoice-generator" className="hover:text-white transition-colors">Invoice Generator</a></li>
-                            <li><a href="/gst-calculator" className="hover:text-white transition-colors">GST Calculator</a></li>
-                            <li><a href="/emi-calculator" className="hover:text-white transition-colors">EMI Calculator</a></li>
-                            <li><a href="/profit-margin" className="hover:text-white transition-colors">Profit Margin</a></li>
+                            <li><a href="/invoice-generator" className="hover:text-white transition-colors">Invoice</a></li>
+                            <li><a href="/resume-builder" className="hover:text-white transition-colors">Resume</a></li>
+                            <li><a href="/qr-menu-generator" className="hover:text-white transition-colors">QR Menu</a></li>
+                            <li><a href="/barcode-generator" className="hover:text-white transition-colors">Barcode</a></li>
+                            <li><a href="/receipt-scanner" className="hover:text-white transition-colors">Receipt Scanner</a></li>
                         </ul>
                     </div>
 
@@ -66,6 +70,9 @@ export default function Footer() {
                             <li><a href="/base64-converter" className="hover:text-white transition-colors">Base64</a></li>
                             <li><a href="/json-formatter" className="hover:text-white transition-colors">JSON</a></li>
                             <li><a href="/hash-generator" className="hover:text-white transition-colors">Hash</a></li>
+                            <li><a href="/ssl-checker" className="hover:text-white transition-colors">SSL Checker</a></li>
+                            <li><a href="/header-inspector" className="hover:text-white transition-colors">Headers</a></li>
+                            <li><a href="/regex-tester" className="hover:text-white transition-colors">Regex</a></li>
                         </ul>
                     </div>
 
@@ -78,6 +85,26 @@ export default function Footer() {
                             <li><a href="/markdown-editor" className="hover:text-white transition-colors">Markdown</a></li>
                         </ul>
                     </div>
+
+                    {/* Date Tools */}
+                    <div>
+                        <h4 className="font-bold mb-3 text-rose-300">Date & Time</h4>
+                        <ul className="space-y-2 text-sm text-gray-400">
+                            <li><a href="/timestamp-converter" className="hover:text-white">Timestamp Converter</a></li>
+                            <li><a href="/time-difference" className="hover:text-white">Time Difference</a></li>
+                            <li><a href="/age-calculator" className="hover:text-white">Age Calculator</a></li>
+                        </ul>
+
+                        <h4 className="font-bold mt-6 mb-3 text-orange-300">Network</h4>
+                        <ul className="space-y-2 text-sm text-gray-400">
+                            <li><a href="/my-ip" className="hover:text-white">My IP Address</a></li>
+                            <li><a href="/dns-lookup" className="hover:text-white">DNS Lookup</a></li>
+                            <li><a href="/subnet-calculator" className="hover:text-white">Subnet Calculator</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Security Tools */}
+
                 </div>
 
                 <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">

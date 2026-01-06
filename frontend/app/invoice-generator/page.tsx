@@ -244,6 +244,9 @@ export default function InvoiceGenerator() {
                             <FileText className="w-6 h-6 text-blue-600" />
                             Professional Invoice Generator
                         </h1>
+                        <p className="text-sm text-gray-500 mt-1">
+                            Need full invoicing & GST reports? <span className="font-bold text-indigo-600 cursor-pointer">Try CoolBook</span>
+                        </p>
                     </div>
                     <button
                         onClick={downloadPDF}
