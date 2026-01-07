@@ -111,7 +111,7 @@ export default function AgeCalculator() {
                             value={dob}
                             onChange={(e) => setDob(e.target.value)}
                             max={new Date().toISOString().split('T')[0]}
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-gray-50 transition-all text-center text-lg font-medium"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-gray-50 transition-all text-center text-lg font-medium text-gray-900"
                         />
                     </div>
                 </div>

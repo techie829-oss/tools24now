@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Image, Link2, Minimize2, FolderSync, FileText, Ruler, ChevronDown, Menu, X, Scissors, FileType, RefreshCw, Maximize2, Crop, Wand2, RotateCw, Stamp, Briefcase, Calculator, PieChart, TrendingUp, QrCode, Lock, Type, Fingerprint, Binary, Code, Hash, FileCode, Palette, ArrowRightLeft, FileUser, UtensilsCrossed, Barcode, Table as TableIcon, Receipt, Clock, Timer, Cake, Network, Globe, Search, Shield, Server, History, Calendar, Award, Users, Home, BookOpen } from 'lucide-react';
+import { Image, Link2, Minimize2, FolderSync, FileText, Ruler, ChevronDown, Menu, X, Scissors, FileType, RefreshCw, Maximize2, Crop, Wand2, RotateCw, Stamp, Briefcase, Calculator, PieChart, TrendingUp, QrCode, Lock, Type, Fingerprint, Binary, Code, Hash, FileCode, Palette, ArrowRightLeft, FileUser, UtensilsCrossed, Barcode, Table as TableIcon, Receipt, Clock, Timer, Cake, Network, Globe, Search, Shield, Server, History, Calendar, Award, Users, Home, BookOpen, Landmark, Coins, Building2, ScrollText, Target, Percent, BarChart3 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useRecentTools } from '../hooks/useRecentTools';
 
@@ -32,15 +32,30 @@ const IMAGE_TOOLS = [
 
 const BUSINESS_TOOLS = [
     { name: 'Invoice Generator', href: '/invoice-generator', icon: FileText },
-    { name: 'GST Calculator', href: '/gst-calculator', icon: Calculator },
-    { name: 'EMI Calculator', href: '/emi-calculator', icon: PieChart },
-    { name: 'Profit Margin', href: '/profit-margin', icon: TrendingUp },
+    { name: 'Quote / Estimate', href: '/quote-generator', icon: ScrollText },
+    { name: 'Proforma Invoice', href: '/proforma-invoice', icon: FileText },
+    { name: 'Purchase Order', href: '/purchase-order', icon: Briefcase },
+    { name: 'Cash Receipt', href: '/cash-receipt', icon: Receipt },
     { name: 'Resume Builder', href: '/resume-builder', icon: FileUser },
+    { name: 'Business Name Gen', href: '/business-name-generator', icon: Building2 },
     { name: 'QR Menu Generator', href: '/qr-menu-generator', icon: UtensilsCrossed },
     { name: 'Barcode Generator', href: '/barcode-generator', icon: Barcode },
     { name: 'Receipt Scanner', href: '/receipt-scanner', icon: Receipt },
 ];
 
+const FINANCE_TOOLS = [
+    { name: 'GST Calculator', href: '/gst-calculator', icon: Calculator },
+    { name: 'GST Returns', href: '/gst-return-summary', icon: FileText },
+    { name: 'GST Split Calc', href: '/gst-split-calculator', icon: Percent },
+    { name: 'TDS Calculator', href: '/tds-calculator', icon: Landmark },
+    { name: 'Salary Calculator', href: '/salary-calculator', icon: Coins },
+    { name: 'Freelance Rate', href: '/freelance-rate-calculator', icon: Clock },
+    { name: 'Break-Even Calc', href: '/break-even-calculator', icon: Target },
+    { name: 'Profit Margin', href: '/profit-margin', icon: TrendingUp },
+    { name: 'ROI Calculator', href: '/roi-calculator', icon: TrendingUp },
+    { name: 'Valuation Calc', href: '/company-valuation', icon: BarChart3 },
+    { name: 'EMI Calculator', href: '/emi-calculator', icon: PieChart },
+];
 const UTILITY_TOOLS = [
     { name: 'QR Code Generator', href: '/qr-generator', icon: QrCode },
     { name: 'File Metadata', href: '/file-metadata', icon: FileText },
@@ -90,7 +105,7 @@ const EDUCATION_TOOLS = [
 ];
 
 const ALL_TOOLS = [
-    ...PDF_TOOLS, ...IMAGE_TOOLS, ...BUSINESS_TOOLS, ...EDUCATION_TOOLS, ...UTILITY_TOOLS,
+    ...PDF_TOOLS, ...IMAGE_TOOLS, ...BUSINESS_TOOLS, ...FINANCE_TOOLS, ...EDUCATION_TOOLS, ...UTILITY_TOOLS,
     ...DEVELOPER_TOOLS, ...DESIGN_TOOLS, ...NETWORK_TOOLS, ...DATE_TOOLS
 ];
 
@@ -225,6 +240,21 @@ export default function Header() {
                                                     {BUSINESS_TOOLS.map((tool) => (
                                                         <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-blue-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-blue-600 mr-2" />
+                                                            <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            {/* Finance Tools Column */}
+                                            <div>
+                                                <h3 className="text-sm font-bold text-indigo-600 mb-3 flex items-center gap-2">
+                                                    <Landmark className="w-4 h-4" /> Finance & Tax
+                                                </h3>
+                                                <div className="space-y-0.5">
+                                                    {FINANCE_TOOLS.map((tool) => (
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-indigo-50 transition-colors group">
+                                                            <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-indigo-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
                                                     ))}
@@ -402,6 +432,18 @@ export default function Header() {
                                 <h3 className="text-sm font-bold text-blue-600 mb-3 uppercase tracking-wider">Business Tools</h3>
                                 <div className="grid grid-cols-2 gap-3">
                                     {BUSINESS_TOOLS.map((tool) => (
+                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center text-sm text-gray-600 p-2 rounded hover:bg-gray-50">
+                                            <tool.icon className="w-4 h-4 mr-2" />
+                                            {tool.name}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 className="text-sm font-bold text-indigo-600 mb-3 uppercase tracking-wider">Finance & Tax</h3>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {FINANCE_TOOLS.map((tool) => (
                                         <Link key={tool.href} href={tool.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center text-sm text-gray-600 p-2 rounded hover:bg-gray-50">
                                             <tool.icon className="w-4 h-4 mr-2" />
                                             {tool.name}

@@ -131,15 +131,15 @@ export default function FeeReceiptGeneratorPage() {
                         <div className="space-y-3">
                             <div>
                                 <label className="block text-xs font-medium text-gray-500 mb-1">School Name</label>
-                                <input type="text" value={data.schoolName} onChange={e => setData({ ...data, schoolName: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="text" value={data.schoolName} onChange={e => setData({ ...data, schoolName: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                             <div>
                                 <label className="block text-xs font-medium text-gray-500 mb-1">Address</label>
-                                <input type="text" value={data.schoolAddress} onChange={e => setData({ ...data, schoolAddress: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="text" value={data.schoolAddress} onChange={e => setData({ ...data, schoolAddress: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                             <div>
                                 <label className="block text-xs font-medium text-gray-500 mb-1">Contact Info</label>
-                                <input type="text" value={data.schoolContact} onChange={e => setData({ ...data, schoolContact: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="text" value={data.schoolContact} onChange={e => setData({ ...data, schoolContact: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                         </div>
 
@@ -152,11 +152,11 @@ export default function FeeReceiptGeneratorPage() {
                         <div className="grid grid-cols-2 gap-3">
                             <div>
                                 <label className="block text-xs font-medium text-gray-500 mb-1">Receipt No</label>
-                                <input type="text" value={data.receiptNo} onChange={e => setData({ ...data, receiptNo: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="text" value={data.receiptNo} onChange={e => setData({ ...data, receiptNo: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                             <div>
                                 <label className="block text-xs font-medium text-gray-500 mb-1">Date</label>
-                                <input type="date" value={data.date} onChange={e => setData({ ...data, date: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="date" value={data.date} onChange={e => setData({ ...data, date: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                         </div>
 
@@ -174,14 +174,14 @@ export default function FeeReceiptGeneratorPage() {
                                         placeholder="Description"
                                         value={item.description}
                                         onChange={(e) => updateItem(index, 'description', e.target.value)}
-                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900"
                                     />
                                     <input
                                         type="number"
                                         placeholder="Amount"
                                         value={item.amount}
                                         onChange={(e) => updateItem(index, 'amount', Number(e.target.value))}
-                                        className="w-24 px-3 py-2 border border-gray-300 rounded-md text-sm text-right"
+                                        className="w-24 px-3 py-2 border border-gray-300 rounded-md text-sm text-right text-gray-900"
                                     />
                                     <button onClick={() => removeItem(index)} className="p-2 text-red-400 hover:text-red-600">
                                         <Trash2 className="w-4 h-4" />
@@ -226,7 +226,7 @@ export default function FeeReceiptGeneratorPage() {
                                                 value={data.class}
                                                 onChange={e => setData({ ...data, class: e.target.value })}
                                                 placeholder="X-A"
-                                                className="text-sm font-medium border-b border-dashed border-transparent hover:border-gray-300 focus:outline-none w-16"
+                                                className="text-sm font-medium border-b border-dashed border-transparent hover:border-gray-300 focus:outline-none w-16 text-gray-900"
                                             />
                                         </div>
                                         <div className="flex items-center gap-2">
@@ -236,7 +236,7 @@ export default function FeeReceiptGeneratorPage() {
                                                 value={data.rollNo}
                                                 onChange={e => setData({ ...data, rollNo: e.target.value })}
                                                 placeholder="001"
-                                                className="text-sm font-medium border-b border-dashed border-transparent hover:border-gray-300 focus:outline-none w-16"
+                                                className="text-sm font-medium border-b border-dashed border-transparent hover:border-gray-300 focus:outline-none w-16 text-gray-900"
                                             />
                                         </div>
                                     </div>

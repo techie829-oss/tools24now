@@ -278,14 +278,14 @@ export default function HostelAllocationPage() {
                                                 placeholder="Student Name"
                                                 value={newStudentName}
                                                 onChange={e => setNewStudentName(e.target.value)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-gray-900"
                                             />
                                             <input
                                                 type="text"
                                                 placeholder="Course / Dept"
                                                 value={newStudentCourse}
                                                 onChange={e => setNewStudentCourse(e.target.value)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 text-gray-900"
                                             />
                                             <button
                                                 onClick={handleAllocate}

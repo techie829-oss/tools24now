@@ -141,8 +141,8 @@ export default function BarcodeGenerator() {
                             key={fmt}
                             onClick={() => setFormat(fmt)}
                             className={`px-5 py-2.5 rounded-xl font-semibold transition-all ${format === fmt
-                                    ? 'bg-cyan-600 text-white shadow-lg'
-                                    : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-300'
+                                ? 'bg-cyan-600 text-white shadow-lg'
+                                : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-300'
                                 }`}
                         >
                             {fmt}
@@ -163,7 +163,7 @@ export default function BarcodeGenerator() {
                                     value={singleValue}
                                     onChange={(e) => setSingleValue(e.target.value)}
                                     placeholder="Enter barcode value"
-                                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 font-mono"
+                                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 font-mono text-gray-900"
                                 />
                             </div>
 
@@ -174,7 +174,7 @@ export default function BarcodeGenerator() {
                                     value={singleLabel}
                                     onChange={(e) => setSingleLabel(e.target.value)}
                                     placeholder="Product label"
-                                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-gray-900"
                                 />
                             </div>
 
@@ -198,8 +198,8 @@ export default function BarcodeGenerator() {
                                 <button
                                     onClick={() => handleCopy(singleValue)}
                                     className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-semibold transition-colors ${copied === singleValue
-                                            ? 'bg-green-600 text-white'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-green-600 text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         }`}
                                 >
                                     {copied === singleValue ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}

@@ -115,11 +115,11 @@ export default function StudentIdGeneratorPage() {
                         <div className="grid grid-cols-1 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">School Name</label>
-                                <input type="text" value={data.schoolName} onChange={e => setData({ ...data, schoolName: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="text" value={data.schoolName} onChange={e => setData({ ...data, schoolName: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">School Address</label>
-                                <input type="text" value={data.schoolAddress} onChange={e => setData({ ...data, schoolAddress: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="text" value={data.schoolAddress} onChange={e => setData({ ...data, schoolAddress: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                         </div>
 
@@ -142,23 +142,23 @@ export default function StudentIdGeneratorPage() {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                                <input type="text" value={data.name} onChange={e => setData({ ...data, name: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="John Doe" />
+                                <input type="text" value={data.name} onChange={e => setData({ ...data, name: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" placeholder="John Doe" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Roll / ID No</label>
-                                <input type="text" value={data.id} onChange={e => setData({ ...data, id: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="2024001" />
+                                <input type="text" value={data.id} onChange={e => setData({ ...data, id: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" placeholder="2024001" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Class / Grade</label>
-                                <input type="text" value={data.grade} onChange={e => setData({ ...data, grade: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="10th - A" />
+                                <input type="text" value={data.grade} onChange={e => setData({ ...data, grade: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" placeholder="10th - A" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
-                                <input type="date" value={data.dob} onChange={e => setData({ ...data, dob: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" />
+                                <input type="date" value={data.dob} onChange={e => setData({ ...data, dob: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Blood Group</label>
-                                <select value={data.bloodGroup} onChange={e => setData({ ...data, bloodGroup: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                                <select value={data.bloodGroup} onChange={e => setData({ ...data, bloodGroup: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900">
                                     <option value="">Select...</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
@@ -172,11 +172,11 @@ export default function StudentIdGeneratorPage() {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Emergency Contact</label>
-                                <input type="tel" value={data.contact} onChange={e => setData({ ...data, contact: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="+1 234 567 890" />
+                                <input type="tel" value={data.contact} onChange={e => setData({ ...data, contact: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" placeholder="+1 234 567 890" />
                             </div>
                             <div className="col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
-                                <input type="text" value={data.address} onChange={e => setData({ ...data, address: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm" placeholder="Flat No, Street, City" />
+                                <input type="text" value={data.address} onChange={e => setData({ ...data, address: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900" placeholder="Flat No, Street, City" />
                             </div>
                         </div>
 

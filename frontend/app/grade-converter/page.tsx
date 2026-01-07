@@ -81,7 +81,7 @@ export default function GradeConverterPage() {
                                     <select
                                         value={scale}
                                         onChange={(e) => setScale(e.target.value as GradeScale)}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-900"
                                     >
                                         <option value="US_4_0">US College (4.0 Scale)</option>
                                         <option value="INDIA_10_0">Indian University (10.0 Scale)</option>
@@ -100,7 +100,7 @@ export default function GradeConverterPage() {
                                             value={inputScore}
                                             onChange={(e) => setInputScore(e.target.value)}
                                             placeholder="e.g. 85"
-                                            className="w-full pl-4 pr-12 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-mono"
+                                            className="w-full pl-4 pr-12 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-mono text-gray-900"
                                         />
                                         <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</div>
                                     </div>

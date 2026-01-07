@@ -110,7 +110,7 @@ export default function AttendanceCalculatorPage() {
                                     value={totalClasses}
                                     onChange={(e) => setTotalClasses(e.target.value)}
                                     placeholder="e.g. 50"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-gray-900"
                                 />
                             </div>
                             <div>
@@ -120,7 +120,7 @@ export default function AttendanceCalculatorPage() {
                                     value={attendedClasses}
                                     onChange={(e) => setAttendedClasses(e.target.value)}
                                     placeholder="e.g. 40"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-gray-900"
                                 />
                             </div>
                             <div>
@@ -131,7 +131,7 @@ export default function AttendanceCalculatorPage() {
                                         value={targetPercentage}
                                         onChange={(e) => setTargetPercentage(e.target.value)}
                                         placeholder="e.g. 75"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 pr-12"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 pr-12 text-gray-900"
                                     />
                                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</div>
                                 </div>
@@ -192,7 +192,7 @@ export default function AttendanceCalculatorPage() {
                                 <div className="mt-8 w-full bg-white/50 h-3 rounded-full overflow-hidden">
                                     <div
                                         className={`h-full transition-all duration-1000 ${status === 'safe' ? 'bg-green-500' :
-                                                status === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
+                                            status === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
                                             }`}
                                         style={{ width: `${Math.min(currentPercentage, 100)}%` }}
                                     ></div>

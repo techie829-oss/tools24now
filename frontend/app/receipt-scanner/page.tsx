@@ -288,7 +288,7 @@ export default function ReceiptScannerPage() {
                                                     type="date"
                                                     value={data.date || ''}
                                                     onChange={(e) => handleInputChange('date', e.target.value)}
-                                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-gray-900"
                                                 />
                                             </div>
                                             <div>
@@ -297,7 +297,7 @@ export default function ReceiptScannerPage() {
                                                     type="number"
                                                     value={data.tax || ''}
                                                     onChange={(e) => handleInputChange('tax', e.target.value)}
-                                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all bg-gray-50"
+                                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all bg-gray-50 text-gray-900"
                                                     placeholder="0.00"
                                                 />
                                             </div>

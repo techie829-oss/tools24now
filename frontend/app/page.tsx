@@ -7,7 +7,8 @@ import {
   FileText, Calculator, PieChart, TrendingUp, FileUser, UtensilsCrossed, Barcode, Table as TableIcon,
   QrCode, Lock, Type, Fingerprint, Binary, Code, Hash, FileCode, Palette, ArrowRightLeft,
   Clock, Timer, Cake, Network, Search, Server, Receipt, SearchCode, Shield, CheckCircle, Zap, Lock as LockIcon,
-  Calendar, Award, Users, Home as HomeIcon, BookOpen, GraduationCap
+  Calendar, Award, Users, Home as HomeIcon, BookOpen, GraduationCap,
+  ScrollText, Briefcase, Landmark, Coins, Target, Percent, BarChart3, Building2
 } from 'lucide-react';
 
 // --- Tool Data ---
@@ -37,13 +38,29 @@ const imageTools = [
 
 const businessTools = [
   { title: 'Invoice Generator', description: 'Create professional invoices with GST', href: '/invoice-generator', icon: FileText, available: true },
-  { title: 'GST Calculator', description: 'Calculate inclusive & exclusive GST instantly', href: '/gst-calculator', icon: Calculator, available: true },
-  { title: 'EMI Calculator', description: 'Calculate loan EMIs with amortization', href: '/emi-calculator', icon: PieChart, available: true },
-  { title: 'Profit Margin', description: 'Calculate margins, markups & optimal pricing', href: '/profit-margin', icon: TrendingUp, available: true },
+  { title: 'Quote / Estimate', description: 'Create and download quotes instantly', href: '/quote-generator', icon: ScrollText, available: true },
+  { title: 'Proforma Invoice', description: 'Generate proforma invoices for exports', href: '/proforma-invoice', icon: FileText, available: true },
+  { title: 'Purchase Order', description: 'Create standardized Purchase Orders', href: '/purchase-order', icon: Briefcase, available: true },
+  { title: 'Cash Receipt', description: 'Generate payment receipts quickly', href: '/cash-receipt', icon: Receipt, available: true },
   { title: 'Quick Resume Builder', description: 'Create a clean resume PDF in minutes', href: '/resume-builder', icon: FileUser, available: true },
+  { title: 'Business Name Gen', description: 'Generate creative business names', href: '/business-name-generator', icon: Building2, available: true },
   { title: 'QR Menu Generator', description: 'Create digital menus for restaurants', href: '/qr-menu-generator', icon: UtensilsCrossed, available: true },
   { title: 'Barcode Generator', description: 'Generate custom barcodes for products', href: '/barcode-generator', icon: Barcode, available: true },
   { title: 'Receipt Scanner', description: 'Scan and extract data from receipts', href: '/receipt-scanner', icon: Receipt, available: true },
+];
+
+const financeTools = [
+  { title: 'GST Calculator', description: 'Calculate inclusive & exclusive GST instantly', href: '/gst-calculator', icon: Calculator, available: true },
+  { title: 'GST Returns', description: 'Estimate GSTR-1 and GSTR-3B summaries', href: '/gst-return-summary', icon: FileText, available: true },
+  { title: 'GST Split Calc', description: 'Find Base and Tax from Total Amount', href: '/gst-split-calculator', icon: Percent, available: true },
+  { title: 'TDS Calculator', description: 'Calculate TDS for various sections', href: '/tds-calculator', icon: Landmark, available: true },
+  { title: 'Salary Calculator', description: 'Estimate In-Hand Salary from CTC', href: '/salary-calculator', icon: Coins, available: true },
+  { title: 'Freelance Rate', description: 'Calculate hourly rates for freelancers', href: '/freelance-rate-calculator', icon: Clock, available: true },
+  { title: 'Break-Even Calc', description: 'Find sales volume to cover costs', href: '/break-even-calculator', icon: Target, available: true },
+  { title: 'Profit Margin', description: 'Calculate margins, markups & optimal pricing', href: '/profit-margin', icon: TrendingUp, available: true },
+  { title: 'ROI Calculator', description: 'Calculate Return on Investment', href: '/roi-calculator', icon: TrendingUp, available: true },
+  { title: 'Valuation Calc', description: 'Estimate your company valuation', href: '/company-valuation', icon: BarChart3, available: true },
+  { title: 'EMI Calculator', description: 'Calculate loan EMIs with amortization', href: '/emi-calculator', icon: PieChart, available: true },
 ];
 
 const utilityTools = [
@@ -119,10 +136,11 @@ const ToolSection = ({ title, tools, bgClass }: { title: string, tools: typeof p
             <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 group-hover:scale-110 transition-transform duration-300 ${title.includes('PDF') ? 'bg-indigo-50 text-indigo-600' :
               title.includes('Image') ? 'bg-emerald-50 text-emerald-600' :
                 title.includes('Business') ? 'bg-blue-50 text-blue-600' :
-                  title.includes('Utility') ? 'bg-purple-50 text-purple-600' :
-                    title.includes('Developer') ? 'bg-orange-50 text-orange-600' :
-                      title.includes('Network') ? 'bg-slate-50 text-slate-600' :
-                        'bg-pink-50 text-pink-600'
+                  title.includes('Finance') ? 'bg-indigo-50 text-indigo-600' :
+                    title.includes('Utility') ? 'bg-purple-50 text-purple-600' :
+                      title.includes('Developer') ? 'bg-orange-50 text-orange-600' :
+                        title.includes('Network') ? 'bg-slate-50 text-slate-600' :
+                          'bg-pink-50 text-pink-600'
               }`}>
               <Icon className="w-7 h-7" />
             </div>
@@ -221,6 +239,10 @@ export default function Home() {
       </div>
 
       <ToolSection title="💼 Business Tools" tools={businessTools} />
+
+      <div className="bg-gradient-to-br from-indigo-50 to-blue-50">
+        <ToolSection title="💰 Finance & Tax Tools" tools={financeTools} />
+      </div>
 
       <div className="bg-gradient-to-br from-purple-50 to-indigo-50">
         <ToolSection title="🛠️ Utility Tools" tools={utilityTools} />

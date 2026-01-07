@@ -298,7 +298,7 @@ export default function InvoiceGenerator() {
                                     <select
                                         value={data.taxType}
                                         onChange={(e) => setData({ ...data, taxType: e.target.value as any })}
-                                        className="w-full rounded border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1.5"
+                                        className="w-full rounded border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-1.5 text-gray-900"
                                     >
                                         <option value="gst_intra">GST (Intra-state: CGST + SGST)</option>
                                         <option value="gst_inter">IGST (Inter-state)</option>

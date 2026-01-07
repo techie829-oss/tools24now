@@ -133,7 +133,7 @@ export default function ExamMarksCalculatorPage() {
                                     value={studentName}
                                     onChange={(e) => setStudentName(e.target.value)}
                                     placeholder="e.g. Alex Johnson"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900"
                                 />
                             </div>
                             <div className="col-span-2">
@@ -142,7 +142,7 @@ export default function ExamMarksCalculatorPage() {
                                     type="text"
                                     value={examName}
                                     onChange={(e) => setExamName(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900"
                                 />
                             </div>
                         </div>
@@ -172,7 +172,7 @@ export default function ExamMarksCalculatorPage() {
                                             value={sub.name}
                                             placeholder={`Subject ${index + 1}`}
                                             onChange={(e) => updateSubject(index, 'name', e.target.value)}
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-900"
                                         />
                                     </div>
                                     <div className="col-span-3">
@@ -180,7 +180,7 @@ export default function ExamMarksCalculatorPage() {
                                             type="number"
                                             value={sub.obtained}
                                             onChange={(e) => updateSubject(index, 'obtained', Number(e.target.value))}
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-center"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-center text-gray-900"
                                         />
                                     </div>
                                     <div className="col-span-3">
@@ -188,7 +188,7 @@ export default function ExamMarksCalculatorPage() {
                                             type="number"
                                             value={sub.max}
                                             onChange={(e) => updateSubject(index, 'max', Number(e.target.value))}
-                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-center bg-gray-50"
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-center bg-gray-50 text-gray-900"
                                         />
                                     </div>
                                     <div className="col-span-1 text-center">

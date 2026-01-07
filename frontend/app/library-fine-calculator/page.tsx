@@ -95,7 +95,7 @@ export default function LibraryFineCalculatorPage() {
                                     type="date"
                                     value={dueDate}
                                     onChange={(e) => setDueDate(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-gray-900"
                                 />
                             </div>
                             <div>
@@ -104,7 +104,7 @@ export default function LibraryFineCalculatorPage() {
                                     type="date"
                                     value={returnDate}
                                     onChange={(e) => setReturnDate(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-gray-900"
                                 />
                             </div>
 
@@ -116,7 +116,7 @@ export default function LibraryFineCalculatorPage() {
                                         value={finePerDay}
                                         onChange={(e) => setFinePerDay(e.target.value)}
                                         min="0"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-gray-900"
                                     />
                                 </div>
                                 <div>
@@ -124,7 +124,7 @@ export default function LibraryFineCalculatorPage() {
                                     <select
                                         value={currency}
                                         onChange={(e) => setCurrency(e.target.value)}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 bg-white"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 bg-white text-gray-900"
                                     >
                                         <option value="INR">₹ (INR)</option>
                                         <option value="USD">$ (USD)</option>

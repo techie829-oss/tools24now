@@ -201,7 +201,7 @@ export default function QRMenuGenerator() {
                                         placeholder="Restaurant Name"
                                         value={restaurantName}
                                         onChange={(e) => setRestaurantName(e.target.value)}
-                                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-lg font-semibold focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-lg font-semibold focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-gray-900"
                                     />
                                 </div>
                                 <div>
@@ -210,7 +210,7 @@ export default function QRMenuGenerator() {
                                         <select
                                             value={currency}
                                             onChange={(e) => setCurrency(e.target.value)}
-                                            className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-lg font-semibold focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white"
+                                            className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-lg font-semibold focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none bg-white text-gray-900"
                                         >
                                             {Object.entries(CURRENCIES).map(([code, symbol]) => (
                                                 <option key={code} value={code}>
@@ -266,7 +266,7 @@ export default function QRMenuGenerator() {
                                                     placeholder="Item Name"
                                                     value={item.name}
                                                     onChange={(e) => updateItem(category.id, item.id, 'name', e.target.value)}
-                                                    className="col-span-2 px-3 py-2 border border-gray-300 rounded-lg font-semibold"
+                                                    className="col-span-2 px-3 py-2 border border-gray-300 rounded-lg font-semibold text-gray-900"
                                                 />
                                                 <div className="relative">
                                                     <span className="absolute left-3 top-2 text-gray-500 font-semibold">{CURRENCIES[currency]}</span>
@@ -284,7 +284,7 @@ export default function QRMenuGenerator() {
                                                 placeholder="Description"
                                                 value={item.description}
                                                 onChange={(e) => updateItem(category.id, item.id, 'description', e.target.value)}
-                                                className="w-full mt-3 px-3 py-2 border border-gray-300 rounded-lg text-sm resize-none"
+                                                className="w-full mt-3 px-3 py-2 border border-gray-300 rounded-lg text-sm resize-none text-gray-900"
                                                 rows={2}
                                             />
                                         </div>
@@ -316,7 +316,7 @@ export default function QRMenuGenerator() {
                                     placeholder="https://yoursite.com/menu"
                                     value={menuUrl}
                                     onChange={(e) => setMenuUrl(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900"
                                 />
                                 <p className="text-xs text-gray-500 mt-1">Leave empty to generate offline HTML</p>
                             </div>

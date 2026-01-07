@@ -519,28 +519,28 @@ export default function ResumeBuilder() {
                                     placeholder="Email"
                                     value={contact.email}
                                     onChange={(e) => setContact({ ...contact, email: e.target.value })}
-                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
+                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 text-gray-900"
                                 />
                                 <input
                                     type="tel"
                                     placeholder="Phone"
                                     value={contact.phone}
                                     onChange={(e) => setContact({ ...contact, phone: e.target.value })}
-                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
+                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 text-gray-900"
                                 />
                                 <input
                                     type="text"
                                     placeholder="Location"
                                     value={contact.location}
                                     onChange={(e) => setContact({ ...contact, location: e.target.value })}
-                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
+                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 text-gray-900"
                                 />
                                 <input
                                     type="text"
                                     placeholder="Website/Portfolio"
                                     value={contact.website}
                                     onChange={(e) => setContact({ ...contact, website: e.target.value })}
-                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
+                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 text-gray-900"
                                 />
                                 {/* New Social Fields */}
                                 <input
@@ -555,14 +555,14 @@ export default function ResumeBuilder() {
                                     placeholder="GitHub URL"
                                     value={contact.github}
                                     onChange={(e) => setContact({ ...contact, github: e.target.value })}
-                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
+                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 text-gray-900"
                                 />
                                 <input
                                     type="text"
                                     placeholder="Twitter/X"
                                     value={contact.twitter}
                                     onChange={(e) => setContact({ ...contact, twitter: e.target.value })}
-                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
+                                    className="px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 text-gray-900"
                                 />
                             </div>
                         </div>
@@ -577,7 +577,7 @@ export default function ResumeBuilder() {
                                 placeholder="Write a brief professional summary..."
                                 value={summary}
                                 onChange={(e) => setSummary(e.target.value)}
-                                className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 resize-none"
+                                className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 resize-none text-gray-900"
                                 rows={4}
                             />
                         </div>
@@ -608,7 +608,7 @@ export default function ResumeBuilder() {
                                                 newExp[idx].title = e.target.value;
                                                 setExperiences(newExp);
                                             }}
-                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded"
+                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                         />
                                         <input
                                             type="text"
@@ -619,7 +619,7 @@ export default function ResumeBuilder() {
                                                 newExp[idx].company = e.target.value;
                                                 setExperiences(newExp);
                                             }}
-                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded"
+                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                         />
                                         <div className="grid grid-cols-2 gap-2 mb-2">
                                             <input
@@ -630,7 +630,7 @@ export default function ResumeBuilder() {
                                                     newExp[idx].startDate = e.target.value;
                                                     setExperiences(newExp);
                                                 }}
-                                                className="px-2 py-1 text-xs border border-gray-300 rounded"
+                                                className="px-2 py-1 text-xs border border-gray-300 rounded text-gray-900"
                                             />
                                             <input
                                                 type="month"
@@ -641,7 +641,7 @@ export default function ResumeBuilder() {
                                                     newExp[idx].endDate = e.target.value;
                                                     setExperiences(newExp);
                                                 }}
-                                                className="px-2 py-1 text-xs border border-gray-300 rounded disabled:bg-gray-100"
+                                                className="px-2 py-1 text-xs border border-gray-300 rounded disabled:bg-gray-100 text-gray-900"
                                             />
                                         </div>
                                         <textarea
@@ -652,7 +652,7 @@ export default function ResumeBuilder() {
                                                 newExp[idx].description = e.target.value;
                                                 setExperiences(newExp);
                                             }}
-                                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded resize-none"
+                                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded resize-none text-gray-900"
                                             rows={2}
                                         />
                                     </div>
@@ -686,7 +686,7 @@ export default function ResumeBuilder() {
                                                 newProj[idx].name = e.target.value;
                                                 setProjects(newProj);
                                             }}
-                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded"
+                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                         />
                                         <div className="grid grid-cols-2 gap-2 mb-2">
                                             <input
@@ -698,7 +698,7 @@ export default function ResumeBuilder() {
                                                     newProj[idx].role = e.target.value;
                                                     setProjects(newProj);
                                                 }}
-                                                className="px-2 py-1 text-sm border border-gray-300 rounded"
+                                                className="px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                             />
                                             <input
                                                 type="text"
@@ -709,7 +709,7 @@ export default function ResumeBuilder() {
                                                     newProj[idx].link = e.target.value;
                                                     setProjects(newProj);
                                                 }}
-                                                className="px-2 py-1 text-sm border border-gray-300 rounded"
+                                                className="px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                             />
                                         </div>
                                         <input
@@ -721,7 +721,7 @@ export default function ResumeBuilder() {
                                                 newProj[idx].technologies = e.target.value;
                                                 setProjects(newProj);
                                             }}
-                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded"
+                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                         />
                                         <textarea
                                             placeholder="Project Description"
@@ -731,7 +731,7 @@ export default function ResumeBuilder() {
                                                 newProj[idx].description = e.target.value;
                                                 setProjects(newProj);
                                             }}
-                                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded resize-none"
+                                            className="w-full px-2 py-1 text-sm border border-gray-300 rounded resize-none text-gray-900"
                                             rows={2}
                                         />
                                     </div>
@@ -765,7 +765,7 @@ export default function ResumeBuilder() {
                                                 newEdu[idx].degree = e.target.value;
                                                 setEducation(newEdu);
                                             }}
-                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded"
+                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                         />
                                         <input
                                             type="text"
@@ -776,7 +776,7 @@ export default function ResumeBuilder() {
                                                 newEdu[idx].school = e.target.value;
                                                 setEducation(newEdu);
                                             }}
-                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded"
+                                            className="w-full mb-2 px-2 py-1 text-sm border border-gray-300 rounded text-gray-900"
                                         />
                                         <div className="grid grid-cols-3 gap-2">
                                             <input
@@ -788,7 +788,7 @@ export default function ResumeBuilder() {
                                                     newEdu[idx].location = e.target.value;
                                                     setEducation(newEdu);
                                                 }}
-                                                className="px-2 py-1 text-xs border border-gray-300 rounded"
+                                                className="px-2 py-1 text-xs border border-gray-300 rounded text-gray-900"
                                             />
                                             <input
                                                 type="month"
@@ -798,7 +798,7 @@ export default function ResumeBuilder() {
                                                     newEdu[idx].graduationDate = e.target.value;
                                                     setEducation(newEdu);
                                                 }}
-                                                className="px-2 py-1 text-xs border border-gray-300 rounded"
+                                                className="px-2 py-1 text-xs border border-gray-300 rounded text-gray-900"
                                             />
                                             <input
                                                 type="text"
@@ -809,7 +809,7 @@ export default function ResumeBuilder() {
                                                     newEdu[idx].gpa = e.target.value;
                                                     setEducation(newEdu);
                                                 }}
-                                                className="px-2 py-1 text-xs border border-gray-300 rounded"
+                                                className="px-2 py-1 text-xs border border-gray-300 rounded text-gray-900"
                                             />
                                         </div>
                                     </div>
@@ -849,7 +849,7 @@ export default function ResumeBuilder() {
                                                 newSkills[idx].level = e.target.value as Skill['level'];
                                                 setSkills(newSkills);
                                             }}
-                                            className="px-2 py-1 text-xs border border-gray-300 rounded"
+                                            className="px-2 py-1 text-xs border border-gray-300 rounded text-gray-900"
                                         >
                                             <option value="Beginner">Beginner</option>
                                             <option value="Intermediate">Intermediate</option>
