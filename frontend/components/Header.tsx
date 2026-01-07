@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Image, Link2, Minimize2, FolderSync, FileText, Ruler, ChevronDown, Menu, X, Scissors, FileType, RefreshCw, Maximize2, Crop, Wand2, RotateCw, Stamp, Briefcase, Calculator, PieChart, TrendingUp, QrCode, Lock, Type, Fingerprint, Binary, Code, Hash, FileCode, Palette, ArrowRightLeft, FileUser, UtensilsCrossed, Barcode, Table as TableIcon, Receipt, Clock, Timer, Cake, Network, Globe, Search, Shield, Server, History, Calendar, Award, Users, Home, BookOpen, Landmark, Coins, Building2, ScrollText, Target, Percent, BarChart3 } from 'lucide-react';
+import Logo from './Logo';
 import { usePathname } from 'next/navigation';
 import { useRecentTools } from '../hooks/useRecentTools';
 
@@ -154,11 +155,7 @@ export default function Header() {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2">
-                        <svg className="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
-                            <path d="M14 2v6h6" />
-                        </svg>
-                        <span className="text-xl font-bold text-gray-900">Tools24Now</span>
+                        <Logo className="w-9 h-9" textClassName="text-xl font-bold" />
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -179,21 +176,21 @@ export default function Header() {
                                 <div
                                     onMouseEnter={handleMouseEnter}
                                     onMouseLeave={handleMouseLeave}
-                                    className="fixed left-0 right-0 top-16 w-full bg-white border-b border-gray-200 shadow-xl py-6 z-40 max-h-[85vh] overflow-y-auto"
+                                    className="fixed left-0 right-0 top-16 w-full bg-white border-b border-gray-200 shadow-xl py-4 z-40 max-h-[85vh] overflow-y-auto"
                                 >
                                     <div className="max-w-[95rem] mx-auto px-6 lg:px-8">
-                                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-8">
+                                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-6">
 
                                             {/* Recently Used (Dynamic) - Spans 1 column but stands out */}
                                             {recentToolsData.length > 0 && (
-                                                <div className="col-span-1 bg-indigo-50/50 rounded-lg p-3 border border-indigo-100 h-fit">
-                                                    <h3 className="text-xs font-bold text-indigo-700 mb-2 flex items-center gap-2 uppercase tracking-wider">
+                                                <div className="col-span-1 bg-indigo-50/50 rounded-lg p-2.5 border border-indigo-100 h-fit">
+                                                    <h3 className="text-[10px] font-bold text-indigo-700 mb-1.5 flex items-center gap-1.5 uppercase tracking-wider">
                                                         <History className="w-3 h-3" /> Recent
                                                     </h3>
                                                     <div className="space-y-0.5">
                                                         {recentToolsData.map((tool) => (
-                                                            <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-white hover:shadow-sm transition-all group">
-                                                                <tool.icon className="w-3.5 h-3.5 text-indigo-400 group-hover:text-indigo-600 mr-2" />
+                                                            <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-1.5 py-1 rounded hover:bg-white hover:shadow-sm transition-all group">
+                                                                <tool.icon className="w-3 h-3 text-indigo-400 group-hover:text-indigo-600 mr-2" />
                                                                 <span className="text-xs text-gray-700 group-hover:text-gray-900 font-bold truncate">{tool.name}</span>
                                                             </Link>
                                                         ))}
@@ -203,12 +200,12 @@ export default function Header() {
 
                                             {/* PDF Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-indigo-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-indigo-600 mb-2 flex items-center gap-2">
                                                     <FileText className="w-4 h-4" /> PDF Tools
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {PDF_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-indigo-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-indigo-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-indigo-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -218,12 +215,12 @@ export default function Header() {
 
                                             {/* Image Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-emerald-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-emerald-600 mb-2 flex items-center gap-2">
                                                     <Image className="w-4 h-4" /> Image Tools
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {IMAGE_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-emerald-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-emerald-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-emerald-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -233,12 +230,12 @@ export default function Header() {
 
                                             {/* Business Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-blue-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-blue-600 mb-2 flex items-center gap-2">
                                                     <Briefcase className="w-4 h-4" /> Business Tools
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {BUSINESS_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-blue-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-blue-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-blue-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -248,12 +245,12 @@ export default function Header() {
 
                                             {/* Finance Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-indigo-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-indigo-600 mb-2 flex items-center gap-2">
                                                     <Landmark className="w-4 h-4" /> Finance & Tax
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {FINANCE_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-indigo-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-indigo-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-indigo-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -263,12 +260,12 @@ export default function Header() {
 
                                             {/* Utility Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-purple-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-purple-600 mb-2 flex items-center gap-2">
                                                     <Wand2 className="w-4 h-4" /> Utility Tools
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {UTILITY_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-purple-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-purple-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-purple-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -278,12 +275,12 @@ export default function Header() {
 
                                             {/* Developer Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-orange-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-orange-600 mb-2 flex items-center gap-2">
                                                     <Code className="w-4 h-4" /> Developer Tools
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {DEVELOPER_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-orange-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-orange-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-orange-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -293,12 +290,12 @@ export default function Header() {
 
                                             {/* Design Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-pink-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-pink-600 mb-2 flex items-center gap-2">
                                                     <Palette className="w-4 h-4" /> Design Tools
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {DESIGN_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-pink-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-pink-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-pink-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -308,12 +305,12 @@ export default function Header() {
 
                                             {/* Education Tools Column */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-teal-600 mb-3 flex items-center gap-2">
+                                                <h3 className="text-sm font-bold text-teal-600 mb-2 flex items-center gap-2">
                                                     <Calendar className="w-4 h-4" /> Education Tools
                                                 </h3>
                                                 <div className="space-y-0.5">
                                                     {EDUCATION_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-teal-50 transition-colors group">
+                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-teal-50 transition-colors group">
                                                             <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-teal-600 mr-2" />
                                                             <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
                                                         </Link>
@@ -321,39 +318,42 @@ export default function Header() {
                                                 </div>
                                             </div>
 
-                                            {/* Network Tools Column */}
-                                            <div className="space-y-3">
-                                                <h3 className="text-xs font-semibold text-gray-900 tracking-wider bg-orange-50 w-fit px-1.5 py-0.5 rounded border border-orange-100 uppercase flex items-center gap-2">
-                                                    <Network className="w-3 h-3 text-orange-600" />
-                                                    Network
-                                                </h3>
-                                                <ul className="space-y-1">
-                                                    {NETWORK_TOOLS.map((tool) => (
-                                                        <li key={tool.name} className="group/item">
-                                                            <Link href={tool.href} className="flex items-center gap-2 text-sm text-gray-500 hover:text-orange-600 group-hover/item:translate-x-1 transition-all p-1 -ml-1 rounded hover:bg-orange-50">
-                                                                <div className="p-1 bg-gray-50 rounded group-hover/item:bg-white group-hover/item:shadow-sm transition-all text-gray-400 group-hover/item:text-orange-500 border border-transparent group-hover/item:border-orange-100">
-                                                                    <tool.icon size={14} />
-                                                                </div>
-                                                                <span className="font-medium text-xs">{tool.name}</span>
-                                                            </Link>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
+                                            {/* Network & Date Tools Column */}
+                                            <div className="space-y-4">
+                                                {/* Network Tools */}
+                                                <div className="space-y-1">
+                                                    <h3 className="text-xs font-semibold text-gray-900 tracking-wider bg-orange-50 w-fit px-1.5 py-0.5 rounded border border-orange-100 uppercase flex items-center gap-2">
+                                                        <Network className="w-3 h-3 text-orange-600" />
+                                                        Network
+                                                    </h3>
+                                                    <ul className="space-y-0.5">
+                                                        {NETWORK_TOOLS.map((tool) => (
+                                                            <li key={tool.name} className="group/item">
+                                                                <Link href={tool.href} className="flex items-center gap-2 text-sm text-gray-500 hover:text-orange-600 group-hover/item:translate-x-1 transition-all px-1 py-0.5 rounded hover:bg-orange-50">
+                                                                    <div className="p-0.5 bg-gray-50 rounded group-hover/item:bg-white group-hover/item:shadow-sm transition-all text-gray-400 group-hover/item:text-orange-500 border border-transparent group-hover/item:border-orange-100">
+                                                                        <tool.icon size={12} />
+                                                                    </div>
+                                                                    <span className="font-medium text-xs">{tool.name}</span>
+                                                                </Link>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
 
-                                            {/* Date Tools */}
-                                            <div className="space-y-3">
-                                                <h3 className="text-xs font-semibold text-gray-900 tracking-wider bg-rose-50 w-fit px-1.5 py-0.5 rounded border border-rose-100 uppercase flex items-center gap-2">
-                                                    <Clock className="w-3 h-3 text-rose-600" />
-                                                    Date & Time
-                                                </h3>
-                                                <div className="space-y-0.5">
-                                                    {DATE_TOOLS.map((tool) => (
-                                                        <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1.5 rounded hover:bg-cyan-50 transition-colors group">
-                                                            <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-cyan-600 mr-2" />
-                                                            <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
-                                                        </Link>
-                                                    ))}
+                                                {/* Date Tools */}
+                                                <div className="space-y-1">
+                                                    <h3 className="text-xs font-semibold text-gray-900 tracking-wider bg-rose-50 w-fit px-1.5 py-0.5 rounded border border-rose-100 uppercase flex items-center gap-2">
+                                                        <Clock className="w-3 h-3 text-rose-600" />
+                                                        Date & Time
+                                                    </h3>
+                                                    <div className="space-y-0.5">
+                                                        {DATE_TOOLS.map((tool) => (
+                                                            <Link key={tool.href} href={tool.href} onClick={() => setIsMenuOpen(false)} className="flex items-center px-2 py-1 rounded hover:bg-cyan-50 transition-colors group">
+                                                                <tool.icon className="w-3.5 h-3.5 text-gray-400 group-hover:text-cyan-600 mr-2" />
+                                                                <span className="text-sm text-gray-600 group-hover:text-gray-900 font-medium">{tool.name}</span>
+                                                            </Link>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
