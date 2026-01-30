@@ -103,10 +103,10 @@ app.include_router(image_cropper.router, prefix=settings.API_V1_STR, tags=["imag
 app.include_router(image_filters.router, prefix=settings.API_V1_STR, tags=["image_filters"])
 app.include_router(image_rotate.router, prefix=settings.API_V1_STR, tags=["image_rotate"])
 app.include_router(image_watermark.router, prefix=settings.API_V1_STR, tags=["image_watermark"])
-app.include_router(markdown_pdf.router, prefix="/api", tags=["markdown_pdf"])
-app.include_router(receipt_scanner.router, prefix="/api", tags=["Receipt Scanner"])
-app.include_router(network_tools.router, prefix="/api", tags=["Network Tools"])
-app.include_router(security_tools.router, prefix="/api", tags=["Security Tools"])
+app.include_router(markdown_pdf.router, prefix=settings.API_V1_STR, tags=["markdown_pdf"])
+app.include_router(receipt_scanner.router, prefix=settings.API_V1_STR, tags=["Receipt Scanner"])
+app.include_router(network_tools.router, prefix=settings.API_V1_STR, tags=["Network Tools"])
+app.include_router(security_tools.router, prefix=settings.API_V1_STR, tags=["Security Tools"])
 
 # Web Controllers (HTML)
 # Currently only Landing Page (root) and Admin (via api_admin) are served.

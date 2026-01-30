@@ -99,7 +99,7 @@ ${document.querySelector('.markdown-preview')?.innerHTML || ''}
 
     const handleDownloadPDF = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/markdown-to-pdf', {
+            const response = await fetch('http://localhost:9000/api/v1/markdown-to-pdf', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
