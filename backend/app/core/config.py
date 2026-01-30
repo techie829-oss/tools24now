@@ -22,12 +22,16 @@ class Settings(BaseSettings):
         
         # If DATABASE_URL is not set, construct it based on DB_TYPE
         if not self.DATABASE_URL:
+            from urllib.parse import quote_plus
+            user = quote_plus(self.DB_USER)
+            password = quote_plus(self.DB_PASSWORD)
+            
             if self.DB_TYPE == "mysql":
-                self.DATABASE_URL = f"mysql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+                self.DATABASE_URL = f"mysql://{user}:{password}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
             elif self.DB_TYPE == "postgresql":
                 # Default PG port if not changed
                 port = self.DB_PORT if self.DB_PORT != "3306" else "5432" 
-                self.DATABASE_URL = f"postgresql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{port}/{self.DB_NAME}"
+                self.DATABASE_URL = f"postgresql://{user}:{password}@{self.DB_HOST}:{port}/{self.DB_NAME}"
             elif self.DB_TYPE == "sqlite":
                 # For SQLite, DB_NAME is the filename (e.g., ./data/app.db)
                 db_path = self.DB_NAME if self.DB_NAME.endswith(".db") else f"./data/{self.DB_NAME}.db"
