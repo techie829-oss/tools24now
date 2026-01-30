@@ -52,5 +52,6 @@ class Settings(BaseSettings):
 
     # CORS / Host
     ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1"]
+    ALLOWED_ORIGINS: list[str] = ["*"]  # Update in production!
 
 settings = Settings()

@@ -39,7 +39,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # Security Headers (Basic)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Allow all origins for dev/web-app
+    allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -47,7 +47,7 @@ app.add_middleware(
 
 app.add_middleware(
     TrustedHostMiddleware, 
-    allowed_hosts=["localhost", "127.0.0.1", "tools24now.com"]
+    allowed_hosts=settings.ALLOWED_HOSTS
 )
 
 # Mount static directory for assets (CSS/JS)
