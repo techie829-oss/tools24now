@@ -5,8 +5,34 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "tools24now.com"
     API_V1_STR: str = "/api"
     
-    # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@127.0.0.1:5432/tools24now")
+    # Database Configuration
+    # Priority: DATABASE_URL > Constructed URL from vars
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "")
+    
+    # Generic Database Variables
+    DB_TYPE: str = os.getenv("DB_TYPE", "sqlite")  # mysql, postgresql, sqlite
+    DB_HOST: str = os.getenv("DB_HOST", "localhost")
+    DB_PORT: str = os.getenv("DB_PORT", "3306")
+    DB_USER: str = os.getenv("DB_USER", "root")
+    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "")
+    DB_NAME: str = os.getenv("DB_NAME", "tools24now")
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        
+        # If DATABASE_URL is not set, construct it based on DB_TYPE
+        if not self.DATABASE_URL:
+            if self.DB_TYPE == "mysql":
+                self.DATABASE_URL = f"mysql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+            elif self.DB_TYPE == "postgresql":
+                # Default PG port if not changed
+                port = self.DB_PORT if self.DB_PORT != "3306" else "5432" 
+                self.DATABASE_URL = f"postgresql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{port}/{self.DB_NAME}"
+            elif self.DB_TYPE == "sqlite":
+                # For SQLite, DB_NAME is the filename (e.g., ./data/app.db)
+                db_path = self.DB_NAME if self.DB_NAME.endswith(".db") else f"./data/{self.DB_NAME}.db"
+                self.DATABASE_URL = f"sqlite:///{db_path}"
+
     
     # Storage
     STORAGE_ROOT: str = os.getenv("STORAGE_ROOT", "storage")
@@ -23,5 +49,8 @@ class Settings(BaseSettings):
     
     class Config:
         env_file = ".env"
+
+    # CORS / Host
+    ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1"]
 
 settings = Settings()
