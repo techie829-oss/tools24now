@@ -74,7 +74,8 @@
 
         async function fetchAPI(endpoint, options = {}) {
             options.headers = { ...options.headers, 'Authorization': `Bearer ${token}` };
-            const res = await fetch(`/api/admin${endpoint}`, options);
+            // backend uses /api/v1/admin prefix
+            const res = await fetch(`/api/v1/admin${endpoint}`, options);
             if (res.status === 401) {
                 logout();
                 return null;
