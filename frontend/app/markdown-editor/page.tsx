@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { Copy, Download, Eye, Code, FileText, Check, Bold, Italic, Link as LinkIcon, List, Image as ImageIcon } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function MarkdownEditor() {
     const [markdown, setMarkdown] = useState(`# Welcome to Markdown Editor
@@ -95,6 +97,36 @@ ${document.querySelector('.markdown-preview')?.innerHTML || ''}
         URL.revokeObjectURL(url);
     };
 
+    const handleDownloadPDF = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/markdown-to-pdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: markdown }),
+            });
+
+            if (!response.ok) {
+                throw new Error('PDF generation failed');
+            }
+
+            // Get the PDF blob
+            const blob = await response.blob();
+
+            // Create download link
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `document-${Date.now()}.pdf`;
+            link.click();
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('PDF download failed:', error);
+            alert('Failed to download PDF. Please try again.');
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
@@ -144,6 +176,10 @@ ${document.querySelector('.markdown-preview')?.innerHTML || ''}
                                 <Download className="w-4 h-4" />
                                 .html
                             </button>
+                            <button onClick={handleDownloadPDF} className="flex items-center gap-2 px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-lg text-sm font-medium transition-colors">
+                                <Download className="w-4 h-4" />
+                                .pdf
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -170,8 +206,70 @@ ${document.querySelector('.markdown-preview')?.innerHTML || ''}
                             <Eye className="w-4 h-4 text-gray-500" />
                             <span className="text-sm font-medium text-gray-700">Preview</span>
                         </div>
-                        <div className="markdown-preview h-[600px] overflow-y-auto p-6 prose prose-sm max-w-none">
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        <style jsx global>{`
+                            .markdown-preview h1, .markdown-preview h2, .markdown-preview h3 { margin-top: 2em !important; margin-bottom: 1em !important; font-weight: 700; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5em; }
+                            .markdown-preview h1 { font-size: 2.25em; border-bottom: 2px solid #e5e7eb; }
+                            .markdown-preview h2 { font-size: 1.8em; }
+                            .markdown-preview h3 { font-size: 1.4em; border-bottom: none; text-decoration: underline; text-decoration-color: #d1d5db; }
+                            .markdown-preview p { margin-bottom: 1.25em !important; line-height: 1.75; text-align: left; }
+                            .markdown-preview ul, .markdown-preview ol { margin-bottom: 1.25em; padding-left: 1.5em; }
+                            .markdown-preview ul { list-style-type: disc; }
+                            .markdown-preview ol { list-style-type: decimal; }
+                            .markdown-preview li { margin-bottom: 0.5em; text-align: left; }
+                            .markdown-preview code { color: #be185d; background-color: #f3f4f6; padding: 0.2em 0.4em; border-radius: 0.25em; font-size: 0.875em; font-family: monospace; }
+                            .markdown-preview pre { margin-top: 1em; margin-bottom: 1em; background-color: #1f2937; color: f9fafb; padding: 1em; border-radius: 0.5em; overflow-x: auto; }
+                            .markdown-preview pre code { color: inherit; background-color: transparent; padding: 0; }
+                            .markdown-preview blockquote { border-left: 4px solid #e5e7eb; padding-left: 1em; color: #4b5563; font-style: italic; margin-bottom: 1.25em; background: #f9fafb; padding: 1em; }
+                            .markdown-preview strong { font-weight: 700; color: #111827; margin-right: 0.25em; }
+
+                            @media print {
+                                body * {
+                                    visibility: hidden;
+                                }
+                                .markdown-preview, .markdown-preview * {
+                                    visibility: visible;
+                                }
+                                .markdown-preview {
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    width: 100%;
+                                    height: auto !important;
+                                    overflow: visible !important;
+                                    padding: 20px !important;
+                                    margin: 0 !important;
+                                }
+                                /* Hide toolbars and other UI explicitly if needed */
+                                nav, button, .toolbar, header {
+                                    display: none !important;
+                                }
+                            }
+                        `}</style>
+                        <div className="markdown-preview h-[600px] overflow-y-auto p-6 text-gray-900 print:text-black">
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                    code({ node, className, children, ...props }) {
+                                        const match = /language-(\w+)/.exec(className || '')
+                                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                                        const { ref, ...rest } = props as any;
+                                        return match ? (
+                                            <SyntaxHighlighter
+                                                {...rest}
+                                                style={vscDarkPlus}
+                                                language={match[1]}
+                                                PreTag="div"
+                                            >
+                                                {String(children).replace(/\n$/, '')}
+                                            </SyntaxHighlighter>
+                                        ) : (
+                                            <code {...props} className={className}>
+                                                {children}
+                                            </code>
+                                        )
+                                    }
+                                }}
+                            >
                                 {markdown}
                             </ReactMarkdown>
                         </div>
