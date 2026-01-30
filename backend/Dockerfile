@@ -22,8 +22,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Create data directory for file processing
-RUN mkdir -p /app/data
+# Create data and static directories
+RUN mkdir -p /app/data /app/app/static
 
 # Expose port
 EXPOSE 9000

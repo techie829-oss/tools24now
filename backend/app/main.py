@@ -51,7 +51,13 @@ app.add_middleware(
 )
 
 # Mount static directory for assets (CSS/JS)
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+# Mount static directory for assets (CSS/JS)
+import os
+static_dir = "app/static"
+if os.path.isdir(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
+else:
+    print(f"Warning: Static directory '{static_dir}' not found. Skipping mount.")
 
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
