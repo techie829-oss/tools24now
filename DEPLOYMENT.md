@@ -67,7 +67,7 @@ This creates an optimized production build in the `frontend/.next` directory (fo
 
 ### Nginx Configuration (Host Machine)
 
-The backend runs in Docker on `127.0.0.1:8000`. Use your existing nginx on the host machine to proxy requests.
+The backend runs in Docker on `127.0.0.1:9002`. Use your existing nginx on the host machine to proxy requests.
 
 #### Simple Proxy Configuration
 
@@ -79,7 +79,7 @@ server {
     server_name yourdomain.com www.yourdomain.com;
 
     location / {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:9002;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -107,7 +107,7 @@ server {
 
     # API Proxy to Backend
     location /api {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:9002;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -117,7 +117,7 @@ server {
 
     # Files endpoint
     location /files {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:9002;
         proxy_set_header Host $host;
     }
 }
@@ -178,6 +178,6 @@ docker-compose up -d --build
 
 ### Frontend API Connection Issues
 - Check nginx configuration
-- Verify backend is running: `curl http://localhost:8000`
+- Verify backend is running: `curl http://localhost:9002`
 - Check CORS settings in backend
 - Verify API endpoint URL in frontend code
