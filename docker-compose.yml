@@ -14,7 +14,7 @@ services:
     volumes:
       - ./backend/data:/app/data
     ports:
-      - "127.0.0.1:9002:8000"
+      - "127.0.0.1:9002:9000"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
