@@ -22,5 +22,5 @@ pdf2docx==0.5.8
 # Image processing
 
 pillow
-opencv-python
+opencv-python-headless
 scikit-image
