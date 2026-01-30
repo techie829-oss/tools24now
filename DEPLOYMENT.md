@@ -67,11 +67,11 @@ This creates an optimized production build in the `frontend/.next` directory (fo
 
 ### Nginx Configuration (Host Machine)
 
-The backend runs in Docker on `127.0.0.1:8000`. Use nginx on the host machine to proxy requests.
+The backend runs in Docker on `127.0.0.1:8000`. Use your existing nginx on the host machine to proxy requests.
 
-#### Option 1: Simple Proxy (Recommended)
+#### Simple Proxy Configuration
 
-Create `/etc/nginx/sites-available/pdftools`:
+Add this to your nginx configuration:
 
 ```nginx
 server {
@@ -88,16 +88,9 @@ server {
 }
 ```
 
-Or use the included `host_nginx_proxy.conf`:
-```bash
-sudo cp host_nginx_proxy.conf /etc/nginx/sites-available/pdftools
-# Edit the file to update your domain
-sudo nano /etc/nginx/sites-available/pdftools
-```
+#### Alternative: Frontend + Backend Split
 
-#### Option 2: Frontend + Backend Split
-
-If you want to serve frontend separately:
+If serving frontend separately:
 
 ```nginx
 server {
