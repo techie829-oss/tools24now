@@ -65,29 +65,58 @@ npm run build
 
 This creates an optimized production build in the `frontend/.next` directory (for Next.js).
 
-### Nginx Configuration
+### Nginx Configuration (Host Machine)
 
-Create nginx configuration file `/etc/nginx/sites-available/pdftools`:
+The backend runs in Docker on `127.0.0.1:8000`. Use nginx on the host machine to proxy requests.
+
+#### Option 1: Simple Proxy (Recommended)
+
+Create `/etc/nginx/sites-available/pdftools`:
+
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com www.yourdomain.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+Or use the included `host_nginx_proxy.conf`:
+```bash
+sudo cp host_nginx_proxy.conf /etc/nginx/sites-available/pdftools
+# Edit the file to update your domain
+sudo nano /etc/nginx/sites-available/pdftools
+```
+
+#### Option 2: Frontend + Backend Split
+
+If you want to serve frontend separately:
 
 ```nginx
 server {
     listen 80;
     server_name yourdomain.com;
 
-    # Frontend (Next.js static export or built files)
+    # Frontend (Next.js build)
+    root /var/www/pdftools/frontend/out;
+    index index.html;
+
     location / {
-        root /var/www/pdftools/frontend/out;  # or .next/static
         try_files $uri $uri/ /index.html;
     }
 
-    # API Proxy to Backend Docker Container
+    # API Proxy to Backend
     location /api {
-        proxy_pass http://localhost:8000;
+        proxy_pass http://127.0.0.1:8000;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -95,11 +124,8 @@ server {
 
     # Files endpoint
     location /files {
-        proxy_pass http://localhost:8000;
-        proxy_http_version 1.1;
+        proxy_pass http://127.0.0.1:8000;
         proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
 ```

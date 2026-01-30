@@ -5,20 +5,27 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: pdf_tools_backend
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=${DATABASE_URL:-sqlite:///./app.db}
-      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here-change-in-production}
-      - API_V1_STR=/api/v1
-      - PROJECT_NAME=PDF Tools Platform
+    image: pdftools-backend
+    container_name: pdftools_backend
+    restart: unless-stopped
+    working_dir: /app
+    env_file:
+      - ./backend/.env
     volumes:
       - ./backend/data:/app/data
-    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - pdftools_network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
+networks:
+  pdftools_network:
+    driver: bridge
