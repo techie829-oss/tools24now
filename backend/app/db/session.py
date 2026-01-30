@@ -3,25 +3,28 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import event
 
-import os
+from app.core.config import settings
 
-# Force Absolute Path for SQLite to avoid CWD issues
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB_PATH = os.path.join(BASE_DIR, "pdf_tools.db")
-SQLALCHEMY_DATABASE_URL = f"sqlite:///{DB_PATH}"
+# Use the DATABASE_URL from settings (loaded from .env)
+SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 
 print(f"DEBUG: Using Database at {SQLALCHEMY_DATABASE_URL}")
 
+connect_args = {}
+if "sqlite" in SQLALCHEMY_DATABASE_URL:
+    connect_args = {"check_same_thread": False}
+
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    SQLALCHEMY_DATABASE_URL, connect_args=connect_args
 )
 
-# Enable Write-Ahead Logging for better concurrency
-@event.listens_for(engine, "connect")
-def set_sqlite_pragma(dbapi_connection, connection_record):
-    cursor = dbapi_connection.cursor()
-    cursor.execute("PRAGMA journal_mode=WAL")
-    cursor.close()
+# Enable Write-Ahead Logging for SQLite only
+if "sqlite" in SQLALCHEMY_DATABASE_URL:
+    @event.listens_for(engine, "connect")
+    def set_sqlite_pragma(dbapi_connection, connection_record):
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA journal_mode=WAL")
+        cursor.close()
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
