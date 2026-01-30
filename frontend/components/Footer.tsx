@@ -37,6 +37,7 @@ export default function Footer() {
                             <li><Link href="/pdf-to-word" className="hover:text-blue-400 transition-colors">PDF to Word</Link></li>
                             <li><Link href="/image-compressor" className="hover:text-blue-400 transition-colors">Image Compressor</Link></li>
                             <li><Link href="/invoice-generator" className="hover:text-blue-400 transition-colors">Invoice Generator</Link></li>
+                            <li><Link href="/student-id-generator" className="hover:text-blue-400 transition-colors">Student ID Card</Link></li>
                             <li><Link href="/gst-calculator" className="hover:text-blue-400 transition-colors">GST Calculator</Link></li>
                             <li><Link href="/resume-builder" className="hover:text-blue-400 transition-colors">Resume Builder</Link></li>
                             <li><Link href="/qr-generator" className="hover:text-blue-400 transition-colors">QR Code Maker</Link></li>
