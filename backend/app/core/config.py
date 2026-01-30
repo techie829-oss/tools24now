@@ -2,7 +2,7 @@ import os
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "tools24now.com"
+    PROJECT_NAME: str = "Tools24Now"
     API_V1_STR: str = "/api"
     
     # Database Configuration

@@ -1,20 +1,14 @@
-# Production Dockerfile for Next.js (SSR)
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Install dependencies (only package.json first for caching)
 COPY package*.json ./
-RUN npm install
+RUN npm install --production=false
 
-# Copy source code
 COPY . .
-
-# Build the Next.js app
 RUN npm run build
 
-# Expose Next.js port
+ENV NODE_ENV=production
 EXPOSE 3000
 
-# Start production server
 CMD ["npm", "run", "start"]

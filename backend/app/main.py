@@ -57,6 +57,10 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 # API Controllers (JSON)
 from app.controllers.api import jobs as api_jobs
 from app.controllers.api import files as api_files
