@@ -27,3 +27,5 @@ scikit-image
 pdfplumber
 pandas
 openpyxl
+dnspython
+dateparser
