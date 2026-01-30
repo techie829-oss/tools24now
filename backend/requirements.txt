@@ -24,3 +24,6 @@ pdf2docx==0.5.8
 pillow
 opencv-python-headless
 scikit-image
+pdfplumber
+pandas
+openpyxl
