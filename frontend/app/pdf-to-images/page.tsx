@@ -91,7 +91,7 @@ export default function PdfToImagesPage() {
 
     const downloadAllAsZip = () => {
         if (job) {
-            const zipUrl = api.getDownloadURL(job.job_id, 'all');
+            const zipUrl = api.getZipDownloadURL(job.job_id);
             window.open(zipUrl, '_blank');
         }
     };
