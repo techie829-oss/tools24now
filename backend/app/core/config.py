@@ -27,7 +27,7 @@ class Settings(BaseSettings):
             password = quote_plus(self.DB_PASSWORD)
             
             if self.DB_TYPE == "mysql":
-                self.DATABASE_URL = f"mysql://{user}:{password}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+                self.DATABASE_URL = f"mysql+pymysql://{user}:{password}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
             elif self.DB_TYPE == "postgresql":
                 # Default PG port if not changed
                 port = self.DB_PORT if self.DB_PORT != "3306" else "5432" 
