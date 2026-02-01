@@ -28,6 +28,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico', // Ideally we'd resize this but for now reusing
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',

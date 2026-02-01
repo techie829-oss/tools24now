@@ -3,123 +3,14 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import {
-  Images, Link2, Minimize2, FolderSync, ScanEye, Ruler, Scissors, FileType,
-  RefreshCw, Maximize2, Crop, Wand2, RotateCw, Stamp,
-  FileText, Calculator, PieChart, TrendingUp, FileUser, UtensilsCrossed, Barcode, Table as TableIcon,
-  QrCode, Lock, Type, Fingerprint, Binary, Code, Hash, FileCode, Palette, ArrowRightLeft,
-  Clock, Timer, Cake, Network, Search, Server, Receipt, SearchCode, Shield, CheckCircle, Zap, Lock as LockIcon,
-  Calendar, Award, Users, Home as HomeIcon, BookOpen, GraduationCap,
-  ScrollText, Briefcase, Landmark, Coins, Target, Percent, BarChart3, Building2, X
+  Link2, Minimize2, FileText, Calculator, QrCode, Search, X, Receipt,
+  Lock as LockIcon, Zap, CheckCircle
 } from 'lucide-react';
-
-// --- Tool Data ---
-// Defining allTools array by concatenating individual arrays for search
-// Note: We need to define the individual arrays first, then the combined one.
-
-const pdfTools = [
-  { title: 'PDF to Images', description: 'Extract pages as high-quality PNG images', href: '/pdf-to-images', icon: Images, available: true },
-  { title: 'Image to PDF', description: 'Combine images into a single PDF file', href: '/image-to-pdf', icon: Images, available: true },
-  { title: 'Merge PDF', description: 'Combine multiple PDFs into one document', href: '/merge-pdf', icon: Link2, available: true },
-  { title: 'Compress PDF', description: 'Reduce file size while optimizing quality', href: '/compress-pdf', icon: Minimize2, available: true },
-  { title: 'Organize PDF', description: 'Sort, add and delete PDF pages', href: '/organize-pdf', icon: FolderSync, available: true },
-  { title: 'OCR PDF', description: 'Convert scanned documents to searchable text', href: '/ocr-pdf', icon: ScanEye, available: true },
-  { title: 'Deskew PDF', description: 'Automatically straighten skewed documents', href: '/deskew-pdf', icon: Ruler, available: true },
-  { title: 'Split PDF', description: 'Extract selected pages from your PDF', href: '/split-pdf', icon: Scissors, available: true },
-  { title: 'PDF to Word', description: 'Convert PDF to editable Word documents', href: '/pdf-to-word', icon: FileType, available: true },
-  { title: 'Table Extractor', description: 'Extract tables from PDF to CSV/Excel', href: '/table-extractor', icon: TableIcon, available: true },
-];
-
-const imageTools = [
-  { title: 'Image Converter', description: 'Convert between JPG, PNG, WebP formats', href: '/image-converter', icon: RefreshCw, available: true },
-  { title: 'Image Compressor', description: 'Reduce file size with quality control', href: '/image-compressor', icon: Minimize2, available: true },
-  { title: 'Image Resizer', description: 'Resize by dimensions, percentage, or presets', href: '/image-resizer', icon: Maximize2, available: true },
-  { title: 'Image Cropper', description: 'Crop with aspect ratios or coordinates', href: '/image-cropper', icon: Crop, available: true },
-  { title: 'Image Filters', description: 'Apply filters with live preview', href: '/image-filters', icon: Wand2, available: true },
-  { title: 'Image Rotate & Flip', description: 'Rotate and flip images with one click', href: '/image-rotate', icon: RotateCw, available: true },
-  { title: 'Image Watermark', description: 'Add text or logo watermarks to protect images', href: '/image-watermark', icon: Stamp, available: true },
-];
-
-const businessTools = [
-  { title: 'Invoice Generator', description: 'Create professional invoices with GST', href: '/invoice-generator', icon: FileText, available: true },
-  { title: 'Quote / Estimate', description: 'Create and download quotes instantly', href: '/quote-generator', icon: ScrollText, available: true },
-  { title: 'Proforma Invoice', description: 'Generate proforma invoices for exports', href: '/proforma-invoice', icon: FileText, available: true },
-  { title: 'Purchase Order', description: 'Create standardized Purchase Orders', href: '/purchase-order', icon: Briefcase, available: true },
-  { title: 'Cash Receipt', description: 'Generate payment receipts quickly', href: '/cash-receipt', icon: Receipt, available: true },
-  { title: 'Quick Resume Builder', description: 'Create a clean resume PDF in minutes', href: '/resume-builder', icon: FileUser, available: true },
-  { title: 'Business Name Gen', description: 'Generate creative business names', href: '/business-name-generator', icon: Building2, available: true },
-  { title: 'QR Menu Generator', description: 'Create digital menus for restaurants', href: '/qr-menu-generator', icon: UtensilsCrossed, available: true },
-  { title: 'Barcode Generator', description: 'Generate custom barcodes for products', href: '/barcode-generator', icon: Barcode, available: true },
-  { title: 'Receipt Scanner', description: 'Scan and extract data from receipts', href: '/receipt-scanner', icon: Receipt, available: true },
-];
-
-const financeTools = [
-  { title: 'GST Calculator', description: 'Calculate inclusive & exclusive GST instantly', href: '/gst-calculator', icon: Calculator, available: true },
-  { title: 'GST Returns', description: 'Estimate GSTR-1 and GSTR-3B summaries', href: '/gst-return-summary', icon: FileText, available: true },
-  { title: 'GST Split Calc', description: 'Find Base and Tax from Total Amount', href: '/gst-split-calculator', icon: Percent, available: true },
-  { title: 'TDS Calculator', description: 'Calculate TDS for various sections', href: '/tds-calculator', icon: Landmark, available: true },
-  { title: 'Salary Calculator', description: 'Estimate In-Hand Salary from CTC', href: '/salary-calculator', icon: Coins, available: true },
-  { title: 'Freelance Rate', description: 'Calculate hourly rates for freelancers', href: '/freelance-rate-calculator', icon: Clock, available: true },
-  { title: 'Break-Even Calc', description: 'Find sales volume to cover costs', href: '/break-even-calculator', icon: Target, available: true },
-  { title: 'Profit Margin', description: 'Calculate margins, markups & optimal pricing', href: '/profit-margin', icon: TrendingUp, available: true },
-  { title: 'ROI Calculator', description: 'Calculate Return on Investment', href: '/roi-calculator', icon: TrendingUp, available: true },
-  { title: 'Valuation Calc', description: 'Estimate your company valuation', href: '/company-valuation', icon: BarChart3, available: true },
-  { title: 'EMI Calculator', description: 'Calculate loan EMIs with amortization', href: '/emi-calculator', icon: PieChart, available: true },
-];
-
-const utilityTools = [
-  { title: 'QR Code Generator', description: 'Create QR codes for URLs, text, wifi', href: '/qr-generator', icon: QrCode, available: true },
-  { title: 'File Metadata', description: 'View and edit PDF/Image metadata', href: '/file-metadata', icon: FileText, available: true },
-  { title: 'Password Generator', description: 'Generate strong, secure passwords', href: '/password-generator', icon: Lock, available: true },
-  { title: 'Text Case Converter', description: 'Convert text to UPPER, lower, Title Case', href: '/text-case-converter', icon: Type, available: true },
-  { title: 'Word Counter', description: 'Count words, characters, text statistics', href: '/word-counter', icon: FileText, available: true },
-  { title: 'UUID Generator', description: 'Generate random UUIDs (v1, v4)', href: '/uuid-generator', icon: Fingerprint, available: true },
-];
-
-const developerTools = [
-  { title: 'Base64 Converter', description: 'Encode/Decode Base64 strings', href: '/base64-converter', icon: Binary, available: true },
-  { title: 'JSON <-> XML', description: 'Convert between JSON and XML formats', href: '/json-xml-converter', icon: ArrowRightLeft, available: true },
-  { title: 'JSON Formatter', description: 'Validate and format JSON data', href: '/json-formatter', icon: Code, available: true },
-  { title: 'Hash Generator', description: 'Generate MD5, SHA-1, SHA-256 hashes', href: '/hash-generator', icon: Hash, available: true },
-  { title: 'Markdown Editor', description: 'Write and preview Markdown live', href: '/markdown-editor', icon: FileCode, available: true },
-  { title: 'SSL Checker', description: 'Verify SSL certificate validity', href: '/ssl-checker', icon: Shield, available: true },
-  { title: 'Header Inspector', description: 'Analyze HTTP headers', href: '/header-inspector', icon: Server, available: true },
-  { title: 'Regex Tester', description: 'Test and debug regular expressions', href: '/regex-tester', icon: SearchCode, available: true },
-];
-
-const designTools = [
-  { title: 'Color Tools', description: 'Pick, convert and generate color palettes', href: '/color-tools', icon: Palette, available: true },
-  { title: 'Unit Converter', description: 'Convert common units of measurement', href: '/unit-converter', icon: ArrowRightLeft, available: true },
-];
-
-const networkTools = [
-  { title: 'My IP Address', description: 'Check your public IP address info', href: '/my-ip', icon: Network, available: true },
-  { title: 'DNS Lookup', description: 'Perform DNS record lookups', href: '/dns-lookup', icon: Search, available: true },
-  { title: 'Subnet Calculator', description: 'Calculate IP subnets and ranges', href: '/subnet-calculator', icon: Calculator, available: true },
-];
-
-const educationTools = [
-  { title: 'Timetable Generator', description: 'Design weekly class schedules', href: '/timetable-generator', icon: Calendar, available: true },
-  { title: 'Student ID Generator', description: 'Create bulk student ID cards', href: '/student-id-generator', icon: FileUser, available: true },
-  { title: 'Fee Receipt Generator', description: 'Generate school fee receipts', href: '/fee-receipt-generator', icon: Receipt, available: true },
-  { title: 'Exam Marks Calculator', description: 'Calculate percentages and totals', href: '/exam-marks-calculator', icon: Calculator, available: true },
-  { title: 'Grade Converter', description: 'Convert marks to grades (GPA)', href: '/grade-converter', icon: Award, available: true },
-  { title: 'Attendance Calculator', description: 'Track student attendance %', href: '/attendance-calculator', icon: Users, available: true },
-  { title: 'Hostel Allocation', description: 'Manage room allocations', href: '/hostel-allocation', icon: HomeIcon, available: true },
-  { title: 'Library Fine', description: 'Calculate overdue book fines', href: '/library-fine-calculator', icon: BookOpen, available: true },
-];
-
-const dateTools = [
-  { title: 'Timestamp Converter', description: 'Unix <-> Human Date conversion', href: '/timestamp-converter', icon: Clock, available: true },
-  { title: 'Time Difference', description: 'Calculate duration between dates', href: '/time-difference', icon: Timer, available: true },
-  { title: 'Age Calculator', description: 'Calculate exact age & birthdays', href: '/age-calculator', icon: Cake, available: true },
-];
-
-// Combined list for search
-const allTools = [
-  ...pdfTools, ...imageTools, ...businessTools, ...financeTools,
-  ...utilityTools, ...developerTools, ...designTools, ...networkTools,
-  ...educationTools, ...dateTools
-];
+import {
+  pdfTools, imageTools, businessTools, financeTools,
+  utilityTools, developerTools, designTools, networkTools,
+  educationTools, dateTools, allTools
+} from '@/lib/tools-data';
 
 
 // --- Components ---

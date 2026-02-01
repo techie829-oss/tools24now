@@ -1,14 +1,12 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://tools24now.com';
-
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/'],
+      disallow: '/private/',
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: 'https://tools24now.site/sitemap.xml',
   };
 }
