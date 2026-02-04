@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { DndContext, closestCenter, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
-import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { DndContext, closestCenter, MouseSensor, TouchSensor, KeyboardSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
+import { arrayMove, SortableContext, verticalListSortingStrategy, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { api } from '@/lib/api';
@@ -31,7 +31,8 @@ function SortableFile({ file, onRemove, index }: { file: FileWithMeta; onRemove:
 
     return (
         <div ref={setNodeRef} style={style} className="bg-white border-2 border-gray-300 rounded-lg p-4 flex items-center gap-4 hover:border-blue-500 transition-colors">
-            <div {...attributes} {...listeners} className="cursor-move">
+            {/* Added touch-none to prevent browser scrolling on handle touch */}
+            <div {...attributes} {...listeners} className="cursor-move touch-none">
                 <GripVertical className="w-6 h-6 text-gray-400" />
             </div>
             <div className="flex-1">
@@ -59,7 +60,24 @@ export default function MergePdfPage() {
     const [error, setError] = useState<string | null>(null);
     const [isDragging, setIsDragging] = useState(false);
 
-    const sensors = useSensors(useSensor(PointerSensor));
+    const sensors = useSensors(
+        useSensor(MouseSensor, {
+            // Require the mouse to move by 10 pixels before activating.
+            activationConstraint: {
+                distance: 10,
+            },
+        }),
+        useSensor(TouchSensor, {
+            // Press delay of 200ms, with tolerance of 5px of movement.
+            activationConstraint: {
+                delay: 200,
+                tolerance: 5,
+            },
+        }),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
 
     const handleFiles = (selectedFiles: FileList | null) => {
         if (!selectedFiles || selectedFiles.length === 0) return;

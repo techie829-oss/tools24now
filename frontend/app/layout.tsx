@@ -8,7 +8,10 @@ import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tools24.com'),
+  metadataBase: new URL('https://tools24now.site'),
+  alternates: {
+    canonical: './',
+  },
   title: {
     default: 'Tools24Now - Free Professional PDF, Image & Business Tools',
     template: '%s | Tools24Now',
@@ -37,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://tools24.com',
+    url: 'https://tools24now.site',
     title: 'Tools24Now - All-in-One Digital Tool Suite',
     description: 'Access 50+ free premium tools: PDF editors, Image optimizers, Business document generators, and Financial calculators.',
     siteName: 'Tools24Now',
